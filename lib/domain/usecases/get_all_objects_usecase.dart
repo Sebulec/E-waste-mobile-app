@@ -5,20 +5,23 @@ import 'package:e_waste/domain/entities/location.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-class GetAllObjectsUseCase extends UseCase<GetAllObjectsResponse, GetAllObjectsUseCaseParams> {
+class GetAllObjectsUseCase
+    extends UseCase<GetAllObjectsUseCaseResponse, GetAllObjectsUseCaseParams> {
   final ObjectsFromApiRepository _objectsFromApiRepository;
   GetAllObjectsUseCase(this._objectsFromApiRepository);
-  
+
   @override
-  Future<Stream<GetAllObjectsResponse>> buildUseCaseStream(GetAllObjectsUseCaseParams params) async {
-    final StreamController<GetAllObjectsResponse> controller =
+  Future<Stream<GetAllObjectsUseCaseResponse>> buildUseCaseStream(
+      GetAllObjectsUseCaseParams params) async {
+    final StreamController<GetAllObjectsUseCaseResponse> controller =
         StreamController();
     try {
       // get allObjects
-      AllObjects allObjects = await _objectsFromApiRepository.getAllObjectsForLocation(params.location);
+      AllObjects allObjects = await _objectsFromApiRepository
+          .getAllObjectsForLocation(params.location);
       // Adding it triggers the .onNext() in the `Observer`
       // It is usually better to wrap the reponse inside a respose object.
-      controller.add(GetAllObjectsResponse(allObjects));
+      controller.add(GetAllObjectsUseCaseResponse(allObjects));
       logger.finest('GetAllObjectsUseCase successful.');
       controller.close();
     } catch (e) {
@@ -28,13 +31,12 @@ class GetAllObjectsUseCase extends UseCase<GetAllObjectsResponse, GetAllObjectsU
     }
     return controller.stream;
   }
-  }
 }
 
-class GetAllObjectsResponse {
+class GetAllObjectsUseCaseResponse {
   final AllObjects allObjects;
 
-  GetAllObjectsResponse(this.allObjects);
+  GetAllObjectsUseCaseResponse(this.allObjects);
 }
 
 class GetAllObjectsUseCaseParams {
