@@ -1,27 +1,29 @@
 import 'package:e_waste/domain/entities/all_objects.dart';
 import 'package:e_waste/domain/entities/location.dart';
+import 'package:e_waste/domain/entities/object_from_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'all_objects_from_api_to_marker_wrapper.dart';
 import 'home_presenter.dart';
 
-class HomeController extends Controller {
-  int _counter;
+class HomeController extends Controller implements ObjectTappedObserver {
   AllObjects _allObjects;
-  int get counter => _counter;
-  AllObjects get user => _allObjects; // data used by the View
+
+  List<Marker> get allObjects =>
+      AllObjectsFromApiToMarkerWrapper(_allObjects, this)
+          .getAllObjectsAsMarkers(); // data used by the View
   final HomePresenter homePresenter;
   // Presenter should always be initialized this way
   HomeController(usersRepo)
-      : _counter = 0,
-        homePresenter = HomePresenter(usersRepo),
+      : homePresenter = HomePresenter(usersRepo),
         super();
 
   @override
   // this is called automatically by the parent class
   void initListeners() {
     homePresenter.getAllObjectsOnNext = (AllObjects allobjects) {
-      print(user.toString());
       _allObjects = allobjects;
       refreshUI(); // Refreshes the UI manually
     };
@@ -41,14 +43,12 @@ class HomeController extends Controller {
 
   getAllObjects() => homePresenter.getAllObjects(Location(1, 1));
 
-  void buttonPressed() {
-    _counter++;
-    refreshUI();
+  void didSetLocation(Location location) {
+    
   }
 
   @override
   void onResumed() {
-    print("On resumed");
     super.onResumed();
   }
 
@@ -57,4 +57,7 @@ class HomeController extends Controller {
     homePresenter.dispose(); // don't forget to dispose of the presenter
     super.dispose();
   }
+
+  @override
+  void didTapObject(ObjectFromApi objectFromApi) {}
 }

@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'object_type.dart';
+
 part 'object_from_api.g.dart';
 
 @JsonSerializable()
@@ -9,6 +11,7 @@ class ObjectFromApi {
   final String googlePlaceId;
   final double lat;
   final double long;
+  ObjectType objectType;
 
   ObjectFromApi(this.name, this.iconUrl, this.googlePlaceId, this.lat, this.long);
 
