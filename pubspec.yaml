@@ -19,6 +19,8 @@ environment:
 dependencies:
   flutter_clean_architecture: any
   json_annotation: any
+  location: any
+  google_maps_flutter: any
   flutter:
     sdk: flutter
 

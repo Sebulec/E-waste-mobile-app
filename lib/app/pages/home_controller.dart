@@ -39,7 +39,7 @@ class HomeController extends Controller {
     };
   }
 
-  void getAllObjects() => homePresenter.getAllObjects(Location(1, 1));
+  getAllObjects() => homePresenter.getAllObjects(Location(1, 1));
 
   void buttonPressed() {
     _counter++;

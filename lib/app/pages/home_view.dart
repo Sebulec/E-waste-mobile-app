@@ -43,21 +43,13 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
                 style: Theme.of(context).textTheme.display1,
               ),
               RaisedButton(
-                onPressed: controller.getUser,
+                onPressed: controller.getAllObjects(),
                 child: Text(
-                  'Get User',
+                  'Get All objects',
                   style: TextStyle(color: Colors.white),
                 ),
                 color: Colors.blue,
               ),
-              RaisedButton(
-                onPressed: controller.getUserwithError,
-                child: Text(
-                  'Get User Error',
-                  style: TextStyle(color: Colors.white),
-                ),
-                color: Colors.blue,
-              )
             ],
           ),
         ),
