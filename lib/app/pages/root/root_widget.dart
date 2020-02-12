@@ -1,10 +1,9 @@
 import 'package:e_waste/app/pages/home/home_view.dart';
+import 'package:e_waste/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class Root extends StatefulWidget {
-  final String title;
-
-  const Root({Key key, this.title}) : super(key: key);
+  const Root({Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -20,7 +19,7 @@ class _RootState extends State<Root> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(AppLocalizations.of(context).translate("ewaste_name")),
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -29,11 +28,11 @@ class _RootState extends State<Root> {
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.map),
-            title: new Text('Map'),
+            title: new Text(AppLocalizations.of(context).translate("map")),
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.info),
-            title: new Text('Info'),
+            title: new Text(AppLocalizations.of(context).translate("info")),
           )
         ],
       ),

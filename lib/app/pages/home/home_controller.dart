@@ -15,6 +15,8 @@ class HomeController extends Controller implements ObjectTappedObserver {
       AllObjectsFromApiToMarkerWrapper(_allObjects, this)
           .getAllObjectsAsMarkers(); // data used by the View
   final HomePresenter homePresenter;
+  Location currentLocation;
+
   // Presenter should always be initialized this way
   HomeController(usersRepo)
       : homePresenter = HomePresenter(usersRepo),
@@ -41,10 +43,10 @@ class HomeController extends Controller implements ObjectTappedObserver {
     };
   }
 
-  getAllObjects() => homePresenter.getAllObjects(Location(1, 1));
+  getAllObjects() => homePresenter.getAllObjects(currentLocation);
 
   void didSetLocation(Location location) {
-    
+    currentLocation = location;
   }
 
   @override

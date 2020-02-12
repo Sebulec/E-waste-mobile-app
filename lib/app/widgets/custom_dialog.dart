@@ -1,14 +1,22 @@
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:flutter/material.dart';
 
+class DialogAction {
+  final String buttonText;
+  final Function onTap;
+
+  DialogAction(this.buttonText, this.onTap);
+}
+
 class CustomDialog extends StatelessWidget {
-  final String title, description, buttonText;
+  final String title, description;
   final Image image;
+  final List<DialogAction> actions;
 
   CustomDialog({
     @required this.title,
     @required this.description,
-    @required this.buttonText,
+    @required this.actions,
     this.image,
   });
 
@@ -72,11 +80,9 @@ class CustomDialog extends StatelessWidget {
           SizedBox(height: 24.0),
           Align(
             alignment: Alignment.bottomRight,
-            child: FlatButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // To close the dialog
-              },
-              child: Text(buttonText),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: actions.map((action) => _generateFlatButtonFromAction(context, action)).toList()
             ),
           ),
         ],
@@ -89,9 +95,30 @@ class CustomDialog extends StatelessWidget {
       left: EWasteLayout.PADDING,
       right: EWasteLayout.PADDING,
       child: CircleAvatar(
-        backgroundColor: Colors.blueAccent,
-        radius: EWasteLayout.AVATAR_RADIUS,
-      ),
+          backgroundColor: Colors.blueAccent,
+          radius: EWasteLayout.AVATAR_RADIUS,
+          child: Padding(
+            padding: const EdgeInsets.all(EWasteLayout.PADDING),
+            child: new Flex(direction: Axis.vertical, children: [
+              new Expanded(
+                child: new FittedBox(
+                  fit: BoxFit.fill,
+                  child: new Icon(Icons.location_on),
+                ),
+              )
+            ]),
+          )),
+    );
+  }
+
+  FlatButton _generateFlatButtonFromAction(
+      BuildContext context, DialogAction dialogAction) {
+    return FlatButton(
+      onPressed: () {
+        dialogAction.onTap();
+        Navigator.of(context).pop(); // To close the dialog
+      },
+      child: Text(dialogAction.buttonText),
     );
   }
 }
