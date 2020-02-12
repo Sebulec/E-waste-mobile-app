@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:e_waste/app/widgets/constants.dart';
+import 'package:e_waste/app/widgets/custom_dialog.dart';
 import 'package:e_waste/data/repositories/data_objects_from_api_repository.dart';
 import 'package:e_waste/domain/entities/location.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,15 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
     print("Did finished loading google map controller");
     // check the permission
     // show dialog
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => CustomDialog(
+        title: "Success",
+        description: "We need your localization 😈",
+        buttonText: "Okay",
+      ),
+    );
 
     // location.LocationData currentLocation =
     //     await location.Location.getLocation();
