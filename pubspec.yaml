@@ -21,6 +21,7 @@ dependencies:
   json_annotation: any
   location: any
   google_maps_flutter: any
+  easy_localization: any
   flutter:
     sdk: flutter
 

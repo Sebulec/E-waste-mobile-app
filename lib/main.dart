@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-import 'app/pages/home/home_view.dart';
+import 'app/pages/root/root_widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(title: "Elektrośmieci",),
+      home: Root(title: "Elektrośmieci",),
     );
   }
 }
