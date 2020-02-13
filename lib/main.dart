@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var supportedLocales = [Locale('en', 'US'), Locale('pl', 'PL')];
     FlutterCleanArchitecture.debugModeOn();
     return MaterialApp(
         localizationsDelegates: [
@@ -20,21 +21,24 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           AppLocalizations.delegate,
         ],
-        supportedLocales: [
-          Locale('en', 'US'),
-          Locale('pl', 'PL')
-        ],
+        supportedLocales: supportedLocales,
         debugShowCheckedModeBanner: false,
         // Returns a locale which will be used by the app
         localeResolutionCallback: (locale, supportedLocales) {
-          // Check if the current device locale is supported
-          for (var supportedLocale in supportedLocales) {
-            if (supportedLocale.countryCode == locale.countryCode) {
+          if (locale == null) {
+            debugPrint("*language locale is null!!!");
+            return supportedLocales.first;
+          }
+
+          for (Locale supportedLocale in supportedLocales) {
+            if (supportedLocale.languageCode == locale.languageCode ||
+                supportedLocale.countryCode == locale.countryCode) {
+              debugPrint("*language ok $supportedLocale");
               return supportedLocale;
             }
           }
-          // If the locale of the device is not supported, use the first one
-          // from the list (English, in this case).
+
+          debugPrint("*language to fallback ${supportedLocales.first}");
           return supportedLocales.first;
         },
         theme: ThemeData(

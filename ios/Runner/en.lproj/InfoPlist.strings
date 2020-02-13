@@ -6,4 +6,4 @@
   Copyright © 2020 The Chromium Authors. All rights reserved.
 */
 "CFBundleDisplayName" = "Ewaste";
-"LocationPermission" = "Location is needed for better app experience. EN";
+NSLocationWhenInUseUsageDescription = "We need your location permission, to show objects in your area.";

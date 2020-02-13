@@ -6,4 +6,4 @@
   Copyright © 2020 The Chromium Authors. All rights reserved.
 */
 "CFBundleDisplayName" = "Elektrośmieci";
-"LocationPermission" = "Location is needed for better app experience. PL";
+NSLocationWhenInUseUsageDescription = "Potrzebujemy Twojej zgody na otrzymywanie lokalizacji, aby pokazać Ci dostępne obiekty w Twojej okolicy.";
