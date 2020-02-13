@@ -1,4 +1,9 @@
 # This is a generated file; do not edit or check into version control.
+firebase_analytics=/Developer/Flutter/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-5.0.11/
+firebase_core=/Developer/Flutter/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.3+3/
+firebase_core_web=/Developer/Flutter/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/
+firebase_crashlytics=/Developer/Flutter/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_crashlytics-0.1.2+5/
+firebase_messaging=/Developer/Flutter/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-6.0.9/
 flutter_plugin_android_lifecycle=/Developer/Flutter/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.5/
 google_maps_flutter=/Developer/Flutter/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-0.5.22+3/
 location=/Developer/Flutter/sdk/flutter/.pub-cache/hosted/pub.dartlang.org/location-2.3.5/

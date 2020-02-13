@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "753099588593",
+    "firebase_url": "https://ewasteapp-267010.firebaseio.com",
+    "project_id": "ewasteapp-267010",
+    "storage_bucket": "ewasteapp-267010.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753099588593:android:cdb5a3d3a96c14505f3a50",
+        "android_client_info": {
+          "package_name": "com.sebastian_kotarski.e_waste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753099588593-52ltkrsj3gnp7foqnrchvhfo7djinp5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK_IWq9TzU7nE2BmvAXNaBA2O8sAuBDZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753099588593-52ltkrsj3gnp7foqnrchvhfo7djinp5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
