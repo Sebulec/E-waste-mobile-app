@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../blur_controller.dart';
 import 'all_objects_from_api_to_marker_wrapper.dart';
 import 'home_presenter.dart';
 
-class HomeController extends Controller implements ObjectTappedObserver {
+class HomeController extends Controller
+    implements ObjectTappedObserver, BlurController {
+  @override
+  bool shouldBlurWidget = false;
+
   AllObjects _allObjects;
 
   List<Marker> get allObjects =>

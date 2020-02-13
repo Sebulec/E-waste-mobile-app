@@ -20,9 +20,9 @@ allprojects {
     }
 }
 
-android.enableJetifier=true
-android.useAndroidX=true
-org.gradle.jvmargs=-Xmx1536M
+// android.enableJetifier=true
+// android.useAndroidX=true
+// org.gradle.jvmargs=-Xmx1536M
 
 rootProject.buildDir = '../build'
 subprojects {

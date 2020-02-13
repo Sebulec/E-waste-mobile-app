@@ -13,7 +13,7 @@ ObjectFromApi _$ObjectFromApiFromJson(Map<String, dynamic> json) {
     json['googlePlaceId'] as String,
     (json['lat'] as num)?.toDouble(),
     (json['long'] as num)?.toDouble(),
-  );
+  )..objectType = _$enumDecodeNullable(_$ObjectTypeEnumMap, json['objectType']);
 }
 
 Map<String, dynamic> _$ObjectFromApiToJson(ObjectFromApi instance) =>
@@ -23,4 +23,42 @@ Map<String, dynamic> _$ObjectFromApiToJson(ObjectFromApi instance) =>
       'googlePlaceId': instance.googlePlaceId,
       'lat': instance.lat,
       'long': instance.long,
+      'objectType': _$ObjectTypeEnumMap[instance.objectType],
     };
+
+T _$enumDecode<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError('A value must be provided. Supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+
+  final value = enumValues.entries
+      .singleWhere((e) => e.value == source, orElse: () => null)
+      ?.key;
+
+  if (value == null && unknownValue == null) {
+    throw ArgumentError('`$source` is not one of the supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+  return value ?? unknownValue;
+}
+
+T _$enumDecodeNullable<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$ObjectTypeEnumMap = {
+  ObjectType.custom: 'custom',
+  ObjectType.shop: 'shop',
+};

@@ -4,6 +4,7 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'app/pages/root/root_widget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'app/widgets/constants.dart';
 import 'app_localizations.dart';
 
 void main() => runApp(MyApp());
@@ -37,8 +38,7 @@ class MyApp extends StatelessWidget {
           return supportedLocales.first;
         },
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+            primarySwatch: Colors.blue, fontFamily: EWasteLayout.REGULAR_FONT),
         home: Root());
   }
 }

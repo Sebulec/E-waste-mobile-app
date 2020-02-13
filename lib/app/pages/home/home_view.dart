@@ -20,19 +20,23 @@ class HomePage extends View {
 }
 
 class _HomePageState extends ViewState<HomePage, HomeController> {
+  bool _shouldShowMap = false;
+
   _HomePageState() : super(HomeController(DataObjectsFromApiRepository())) {
     controller.didSetLocation(Location(_initialCameraPosition.target.latitude,
         _initialCameraPosition.target.longitude));
     controller.getAllObjects();
-    _controller.future.whenComplete(_didLoadController);
+    checkLocationPermissionAndDisplayDialogIfPermitted();
   }
 
-  void _didLoadController() async {
-    print("Did finished loading google map controller");
-    // check the permission
-    // show dialog
+  void checkLocationPermissionAndDisplayDialogIfPermitted() async {
     bool isLocationEnabled = await location.Location().serviceEnabled();
-    _showPermissionDialog();
+    if (!isLocationEnabled) {
+      _showPermissionDialog();
+    } else {
+      _shouldShowMap = true;
+      setState(() {});
+    }
   }
 
   Completer<GoogleMapController> _controller = Completer();
@@ -45,15 +49,19 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
 
   @override
   Widget buildPage() {
-    return GoogleMap(
-        key: globalKey,
-        mapType: MapType.normal,
-        markers: Set.from(controller.allObjects),
-        initialCameraPosition: _initialCameraPosition,
-        onMapCreated: _onMapCreated,
-        onCameraIdle: () => _cameraDidStopped(),
-        myLocationEnabled: true);
+    return _shouldShowMap
+        ? _buildGoogleMap()
+        : Center(child: CircularProgressIndicator());
   }
+
+  _buildGoogleMap() => GoogleMap(
+      key: globalKey,
+      mapType: MapType.normal,
+      markers: Set.from(controller.allObjects),
+      initialCameraPosition: _initialCameraPosition,
+      onMapCreated: _onMapCreated,
+      onCameraIdle: () => _cameraDidStopped(),
+      myLocationEnabled: true);
 
   void _onMapCreated(GoogleMapController googleMapController) {
     _googleMapController = googleMapController;
@@ -81,7 +89,7 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
         actions: [
           DialogAction(
               AppLocalizations.of(context).translate("positive_button"),
-              () => print("Did tap"))
+              () => print("did press "))
         ],
       ),
     );

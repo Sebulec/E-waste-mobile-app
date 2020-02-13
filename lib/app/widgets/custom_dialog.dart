@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +30,9 @@ class CustomDialog extends StatelessWidget {
       ),
       elevation: 0.0,
       backgroundColor: Colors.transparent,
-      child: _dialogContent(context),
+      child: BackdropFilter(
+          filter: new ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+          child: _dialogContent(context)),
     );
   }
 
@@ -81,9 +85,11 @@ class CustomDialog extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: actions.map((action) => _generateFlatButtonFromAction(context, action)).toList()
-            ),
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: actions
+                    .map((action) =>
+                        _generateFlatButtonFromAction(context, action))
+                    .toList()),
           ),
         ],
       ),
