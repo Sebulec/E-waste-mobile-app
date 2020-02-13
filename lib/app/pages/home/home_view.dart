@@ -49,9 +49,7 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
 
   @override
   Widget buildPage() {
-    return _shouldShowMap
-        ? _buildGoogleMap()
-        : Center(child: CircularProgressIndicator());
+    return _shouldShowMap ? _buildGoogleMap() : _showLoader();
   }
 
   _buildGoogleMap() => GoogleMap(
@@ -62,6 +60,9 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
       onMapCreated: _onMapCreated,
       onCameraIdle: () => _cameraDidStopped(),
       myLocationEnabled: true);
+
+  _showLoader() => Container(
+      child: Center(child: CircularProgressIndicator()), color: Colors.white);
 
   void _onMapCreated(GoogleMapController googleMapController) {
     _googleMapController = googleMapController;
