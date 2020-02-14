@@ -15,10 +15,11 @@ class HomeController extends Controller
   bool shouldBlurWidget = false;
 
   AllObjects _allObjects;
+  BuildContext context;
 
   List<Marker> get allObjects =>
       AllObjectsFromApiToMarkerWrapper(_allObjects, this)
-          .getAllObjectsAsMarkers(); // data used by the View
+          .getAllObjectsAsMarkers(context); // data used by the View
   final HomePresenter homePresenter;
   Location currentLocation;
 

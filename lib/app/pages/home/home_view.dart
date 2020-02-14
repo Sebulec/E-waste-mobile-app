@@ -1,9 +1,10 @@
 import 'dart:async';
-
+import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/custom_dialog.dart';
 import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/data/repositories/data_objects_from_api_repository.dart';
+import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/entities/location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,14 +20,19 @@ class HomePage extends View {
       _HomePageState();
 }
 
-class _HomePageState extends ViewState<HomePage, HomeController> {
+class _HomePageState extends ViewState<HomePage, HomeController>
+    with AnalyticsScreen {
   bool _shouldShowMap = false;
+
+  @override
+  String get screenName => ScreenName.MAP_NAME;
 
   _HomePageState() : super(HomeController(DataObjectsFromApiRepository())) {
     controller.didSetLocation(Location(_initialCameraPosition.target.latitude,
         _initialCameraPosition.target.longitude));
     controller.getAllObjects();
     checkLocationPermissionAndDisplayDialogIfPermitted();
+    setCurrentScreen();
   }
 
   void checkLocationPermissionAndDisplayDialogIfPermitted() async {
@@ -49,6 +55,7 @@ class _HomePageState extends ViewState<HomePage, HomeController> {
 
   @override
   Widget buildPage() {
+    controller.context = context;
     return _shouldShowMap ? _buildGoogleMap() : _showLoader();
   }
 

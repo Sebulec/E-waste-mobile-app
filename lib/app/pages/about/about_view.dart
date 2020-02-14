@@ -1,5 +1,8 @@
+import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/data/repositories/data_info_repository.dart';
+import 'package:e_waste/data/services/analytics_service_impl.dart';
+import 'package:e_waste/domain/repositories/analytics_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -9,14 +12,24 @@ import 'package:url_launcher/url_launcher.dart';
 import 'about_controller.dart';
 
 class AboutPage extends View {
+  final AnalyticsService _analyticsService;
+
+  AboutPage(this._analyticsService);
+
   @override
   State<StatefulWidget> createState() => _AboutState();
 }
 
-class _AboutState extends ViewState<AboutPage, AboutController> {
+class _AboutState extends ViewState<AboutPage, AboutController>
+    with AnalyticsScreen {
   bool _isLoading = true;
 
-  _AboutState() : super(AboutController(DataInfoRepository()));
+  @override
+  String get screenName => ScreenName.INFO_NAME;
+
+  _AboutState() : super(AboutController(DataInfoRepository())) {
+    setCurrentScreen();
+  }
 
   @override
   Widget buildPage() {
@@ -43,6 +56,7 @@ class _AboutState extends ViewState<AboutPage, AboutController> {
   }
 
   _launchUrl(String url) async {
+    widget._analyticsService.didOpenUrl(UserActionUrl(url));
     if (await canLaunch(url)) {
       await launch(url);
     } else {

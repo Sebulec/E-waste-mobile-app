@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'object_type.dart';
+import 'waste_type.dart';
 
 part 'object_from_api.g.dart';
 
@@ -12,9 +13,12 @@ class ObjectFromApi {
   final double lat;
   final double long;
   ObjectType objectType;
+  List<WasteType> wasteTypes;
 
-  ObjectFromApi(this.name, this.iconUrl, this.googlePlaceId, this.lat, this.long);
+  ObjectFromApi(
+      this.name, this.iconUrl, this.googlePlaceId, this.lat, this.long);
 
-  factory ObjectFromApi.fromJson(Map<String, dynamic> json) => _$ObjectFromApiFromJson(json);
+  factory ObjectFromApi.fromJson(Map<String, dynamic> json) =>
+      _$ObjectFromApiFromJson(json);
   Map<String, dynamic> toJson() => _$ObjectFromApiToJson(this);
 }

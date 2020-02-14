@@ -2,6 +2,7 @@ import 'package:e_waste/domain/entities/all_objects.dart';
 import 'package:e_waste/domain/entities/location.dart';
 import 'package:e_waste/domain/entities/object_from_api.dart';
 import 'package:e_waste/domain/entities/object_type.dart';
+import 'package:e_waste/domain/entities/waste_type.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 
 class DataObjectsFromApiRepository extends ObjectsFromApiRepository {
@@ -22,6 +23,11 @@ class DataObjectsFromApiRepository extends ObjectsFromApiRepository {
           51.142071,
           16.888347)
         ..objectType = ObjectType.custom
+        ..wasteTypes = [
+          WasteType(
+              "Energy efficient bubbles", WasteTypeEnum.energyEfficientBulbs),
+          WasteType("Large electronics", WasteTypeEnum.largeElectronics)
+        ]
     ]);
     shopObjects = List<ObjectFromApi>();
     shopObjects.addAll([
@@ -32,6 +38,11 @@ class DataObjectsFromApiRepository extends ObjectsFromApiRepository {
           51.1459711,
           16.8583618)
         ..objectType = ObjectType.shop
+        ..wasteTypes = [
+          WasteType(
+              "Energy efficient bubbles", WasteTypeEnum.energyEfficientBulbs),
+          WasteType("Large electronics", WasteTypeEnum.largeElectronics)
+        ]
     ]);
   }
 

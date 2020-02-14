@@ -1,35 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'object_from_api.dart';
+part of 'waste_type.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ObjectFromApi _$ObjectFromApiFromJson(Map<String, dynamic> json) {
-  return ObjectFromApi(
+WasteType _$WasteTypeFromJson(Map<String, dynamic> json) {
+  return WasteType(
     json['name'] as String,
-    json['iconUrl'] as String,
-    json['googlePlaceId'] as String,
-    (json['lat'] as num)?.toDouble(),
-    (json['long'] as num)?.toDouble(),
-  )
-    ..objectType = _$enumDecodeNullable(_$ObjectTypeEnumMap, json['objectType'])
-    ..wasteTypes = (json['wasteTypes'] as List)
-        ?.map((e) =>
-            e == null ? null : WasteType.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    _$enumDecodeNullable(_$WasteTypeEnumEnumMap, json['type']),
+  );
 }
 
-Map<String, dynamic> _$ObjectFromApiToJson(ObjectFromApi instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$WasteTypeToJson(WasteType instance) => <String, dynamic>{
       'name': instance.name,
-      'iconUrl': instance.iconUrl,
-      'googlePlaceId': instance.googlePlaceId,
-      'lat': instance.lat,
-      'long': instance.long,
-      'objectType': _$ObjectTypeEnumMap[instance.objectType],
-      'wasteTypes': instance.wasteTypes,
+      'type': _$WasteTypeEnumEnumMap[instance.type],
     };
 
 T _$enumDecode<T>(
@@ -64,7 +50,9 @@ T _$enumDecodeNullable<T>(
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$ObjectTypeEnumMap = {
-  ObjectType.custom: 'custom',
-  ObjectType.shop: 'shop',
+const _$WasteTypeEnumEnumMap = {
+  WasteTypeEnum.energyEfficientBulbs: 'energyEfficientBulbs',
+  WasteTypeEnum.batteries: 'batteries',
+  WasteTypeEnum.smallElectronics: 'smallElectronics',
+  WasteTypeEnum.largeElectronics: 'largeElectronics',
 };

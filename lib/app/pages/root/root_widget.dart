@@ -4,20 +4,28 @@ import 'package:e_waste/app/pages/about/about_view.dart';
 import 'package:e_waste/app/pages/home/home_view.dart';
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app_localizations.dart';
+import 'package:e_waste/domain/repositories/analytics_service.dart';
 import 'package:flutter/material.dart';
 
 class Root extends StatefulWidget {
-  const Root({Key key}) : super(key: key);
+  final AnalyticsService analyticsService;
+  const Root({Key key, this.analyticsService}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _RootState();
+    return _RootState(analyticsService);
   }
 }
 
 class _RootState extends State<Root> {
+  final AnalyticsService _analyticsService;
+
+  _RootState(this._analyticsService) {
+    _children = [HomePage(), AboutPage(_analyticsService)];
+  }
+
   int _currentIndex = 0;
-  final List<Widget> _children = [HomePage(), AboutPage()];
+  List<Widget> _children = [];
 
   @override
   Widget build(BuildContext context) {
