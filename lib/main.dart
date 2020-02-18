@@ -1,3 +1,4 @@
+import 'package:e_waste/data/repositories/data_app_configuration_repository.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/repositories/analytics_service.dart';
 import 'package:flutter/material.dart';
@@ -8,11 +9,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'app/widgets/constants.dart';
 import 'app_localizations.dart';
+import 'domain/repositories/app_configuration_repository.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   final AnalyticsService _analyticsService = AnalyticsServiceImpl();
+  final AppConfigurationRepository _appConfigurationRepository = DataAppConfigurationRepository();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,9 @@ class MyApp extends StatelessWidget {
         navigatorObservers: [_analyticsService.getAnalyticsObserver()],
         theme: ThemeData(
             primarySwatch: Colors.blue, fontFamily: EWasteLayout.REGULAR_FONT),
-        home: Root(analyticsService: _analyticsService,));
+        home: Root(
+          analyticsService: _analyticsService,
+          appConfigurationRepository: _appConfigurationRepository,
+        ));
   }
 }

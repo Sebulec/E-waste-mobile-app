@@ -2,26 +2,38 @@ import 'dart:ui';
 
 import 'package:e_waste/app/pages/about/about_view.dart';
 import 'package:e_waste/app/pages/home/home_view.dart';
+import 'package:e_waste/app/pages/root/outside_actions_manager.dart';
 import 'package:e_waste/app/widgets/constants.dart';
+import 'package:e_waste/app/widgets/custom_dialog.dart';
 import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/repositories/analytics_service.dart';
+import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:flutter/material.dart';
+
+import 'app_configuration_controller.dart';
 
 class Root extends StatefulWidget {
   final AnalyticsService analyticsService;
-  const Root({Key key, this.analyticsService}) : super(key: key);
+  final AppConfigurationRepository appConfigurationRepository;
+
+  const Root({Key key, this.analyticsService, this.appConfigurationRepository})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _RootState(analyticsService);
+    return _RootState(analyticsService,
+        AppConfigurationController(appConfigurationRepository));
   }
 }
 
 class _RootState extends State<Root> {
   final AnalyticsService _analyticsService;
+  final AppConfigurationController _appConfigurationController;
 
-  _RootState(this._analyticsService) {
+  _RootState(this._analyticsService, this._appConfigurationController) {
     _children = [HomePage(), AboutPage(_analyticsService)];
+    _appConfigurationController.showUpgradeDialog = _showUpgradeDialog;
+    _appConfigurationController.checkAppVersionAndDecideToShowUpdateDialog();
   }
 
   int _currentIndex = 0;
@@ -60,6 +72,28 @@ class _RootState extends State<Root> {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  void _showUpgradeDialog(bool shouldShow) {
+    if (shouldShow) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => CustomDialog(
+          title: "Must update",
+          description:
+              AppLocalizations.of(context).translate("location_required"),
+          actions: [
+            DialogAction(
+                AppLocalizations.of(context).translate("positive_button"),
+                () => _navigateToStore)
+          ],
+        ),
+      );
+    }
+  }
+
+  _navigateToStore() {
+    OutsideActionsManager().navigateToStore();
   }
 }
 
