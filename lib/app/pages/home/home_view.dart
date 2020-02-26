@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
-import 'package:e_waste/app/widgets/custom_dialog.dart';
-import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/data/repositories/data_objects_from_api_repository.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/entities/location.dart';
@@ -37,9 +35,7 @@ class _HomePageState extends ViewState<HomePage, HomeController>
 
   void checkLocationPermissionAndDisplayDialogIfPermitted() async {
     bool isLocationEnabled = await location.Location().serviceEnabled();
-    if (!isLocationEnabled) {
-      _showPermissionDialog();
-    } else {
+    if (isLocationEnabled) {
       _shouldShowMap = true;
       setState(() {});
     }
@@ -85,21 +81,5 @@ class _HomePageState extends ViewState<HomePage, HomeController>
           currentLocationBounds.northeast.latitude,
           currentLocationBounds.northeast.longitude));
     }
-  }
-
-  void _showPermissionDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => CustomDialog(
-        title: AppLocalizations.of(context).translate("ewaste_name"),
-        description:
-            AppLocalizations.of(context).translate("location_required"),
-        actions: [
-          DialogAction(
-              AppLocalizations.of(context).translate("positive_button"),
-              () => print("did press "))
-        ],
-      ),
-    );
   }
 }

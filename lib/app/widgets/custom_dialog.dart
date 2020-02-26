@@ -12,14 +12,14 @@ class DialogAction {
 
 class CustomDialog extends StatelessWidget {
   final String title, description;
-  final Image image;
+  final Icon icon;
   final List<DialogAction> actions;
 
   CustomDialog({
     @required this.title,
     @required this.description,
     @required this.actions,
-    this.image,
+    this.icon,
   });
 
   @override
@@ -109,7 +109,7 @@ class CustomDialog extends StatelessWidget {
               new Expanded(
                 child: new FittedBox(
                   fit: BoxFit.fill,
-                  child: new Icon(Icons.location_on),
+                  child: icon,
                 ),
               )
             ]),

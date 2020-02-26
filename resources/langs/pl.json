@@ -1,11 +1,13 @@
 {
     "ewaste_name": "Elektrośmieci",
-    "positive_button": "Zezwól",
+    "positive_button": "Ok",
     "map": "Mapa",
     "info": "Info",
     "you_can_leave": "Możesz zostawić",
     "energyEfficientBulbs": "Energooszczędne żarówki",
     "smallElectronics": "Mała elektronika",
     "largeElectronics": "Duża elektronika",
-    "batteries": "Baterie"
+    "batteries": "Baterie",
+    "must_update": "Konieczna aktualizacja",
+    "update_required": "Posiadasz starszą wersję aplikacji, zaktualizuj do najnowszej"
 }

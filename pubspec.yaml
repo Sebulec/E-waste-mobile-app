@@ -25,6 +25,7 @@ dependencies:
   flutter_html: any
   url_launcher: any
   package_info: any
+  launch_review: any
   
   #Firebase:
   firebase_core: ^0.4.0+9

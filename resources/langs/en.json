@@ -7,5 +7,7 @@
     "energyEfficientBulbs": "Energy efficient bulbs",
     "smallElectronics": "Small electronics",
     "largeElectronics": "Large electronics",
-    "batteries": "Batteries"
+    "batteries": "Batteries",
+    "must_update": "Must update",
+    "update_required": "You have an old version of the app, please update"
 }

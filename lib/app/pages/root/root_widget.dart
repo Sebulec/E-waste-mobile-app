@@ -77,15 +77,17 @@ class _RootState extends State<Root> {
   void _showUpgradeDialog(bool shouldShow) {
     if (shouldShow) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (BuildContext context) => CustomDialog(
-          title: "Must update",
+          title: AppLocalizations.of(context).translate("must_update"),
           description:
-              AppLocalizations.of(context).translate("location_required"),
+              AppLocalizations.of(context).translate("update_required"),
+          icon: Icon(Icons.update),
           actions: [
             DialogAction(
                 AppLocalizations.of(context).translate("positive_button"),
-                () => _navigateToStore)
+                _navigateToStore)
           ],
         ),
       );
