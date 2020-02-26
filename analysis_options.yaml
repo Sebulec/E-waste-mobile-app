@@ -1,0 +1,3 @@
+analyzer:
+  exclude:
+    - lib/domain/entities/app_configuration.dart

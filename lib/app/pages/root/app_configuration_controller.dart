@@ -25,6 +25,7 @@ class AppConfigurationController extends Controller {
     };
     appConfigurationPresenter.getAppConfigurationOnComplete = () {
       print('All objects retrieved');
+      _checkAppVersionAndDecideToShowUpdateDialog();
     };
 
     // On error, show a snackbar, remove the user, and refresh the UI
@@ -35,20 +36,23 @@ class AppConfigurationController extends Controller {
       _appConfiguration = null;
       refreshUI(); // Refreshes the UI manually
     };
+
+    appConfigurationPresenter.getAppConfiguration();
   }
 
-  void checkAppVersionAndDecideToShowUpdateDialog() async {
+  void _checkAppVersionAndDecideToShowUpdateDialog() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     int buildNumber = int.tryParse(packageInfo.buildNumber) ?? 1;
     _compareVersion(_appConfiguration, buildNumber);
   }
 
   _compareVersion(AppConfiguration appConfiguration, int buildNumber) {
+    var shouldUpgrade = false;
     if (Platform.isAndroid) {
-      print("android");
+      shouldUpgrade = appConfiguration.Android_minimum_version > buildNumber;
     } else if (Platform.isIOS) {
-      print("ios");
+      shouldUpgrade = appConfiguration.IOS_minimum_version > buildNumber;
     }
-    showUpgradeDialog(true);
+    showUpgradeDialog(shouldUpgrade);
   }
 }

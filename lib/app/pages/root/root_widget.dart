@@ -8,6 +8,7 @@ import 'package:e_waste/app/widgets/custom_dialog.dart';
 import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/repositories/analytics_service.dart';
 import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
+import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/material.dart';
 
 import 'app_configuration_controller.dart';
@@ -15,25 +16,36 @@ import 'app_configuration_controller.dart';
 class Root extends StatefulWidget {
   final AnalyticsService analyticsService;
   final AppConfigurationRepository appConfigurationRepository;
+  final ObjectsFromApiRepository objectsFromApiRepository;
 
-  const Root({Key key, this.analyticsService, this.appConfigurationRepository})
+  const Root(
+      {Key key,
+      this.analyticsService,
+      this.appConfigurationRepository,
+      this.objectsFromApiRepository})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _RootState(analyticsService,
-        AppConfigurationController(appConfigurationRepository));
+    return _RootState(
+        analyticsService,
+        AppConfigurationController(appConfigurationRepository),
+        objectsFromApiRepository);
   }
 }
 
 class _RootState extends State<Root> {
   final AnalyticsService _analyticsService;
   final AppConfigurationController _appConfigurationController;
+  final ObjectsFromApiRepository _objectsFromApiRepository;
 
-  _RootState(this._analyticsService, this._appConfigurationController) {
-    _children = [HomePage(), AboutPage(_analyticsService)];
+  _RootState(this._analyticsService, this._appConfigurationController,
+      this._objectsFromApiRepository) {
+    _children = [
+      HomePage(_objectsFromApiRepository),
+      AboutPage(_analyticsService)
+    ];
     _appConfigurationController.showUpgradeDialog = _showUpgradeDialog;
-    _appConfigurationController.checkAppVersionAndDecideToShowUpdateDialog();
   }
 
   int _currentIndex = 0;

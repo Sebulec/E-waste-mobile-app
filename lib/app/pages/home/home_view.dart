@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
-import 'package:e_waste/data/repositories/data_objects_from_api_repository.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/entities/location.dart';
+import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -12,10 +12,14 @@ import 'package:location/location.dart' as location;
 import 'home_controller.dart';
 
 class HomePage extends View {
+  final ObjectsFromApiRepository objectsFromApiRepository;
+
+  HomePage(this.objectsFromApiRepository);
+
   @override
   _HomePageState createState() =>
       // inject dependencies inwards
-      _HomePageState();
+      _HomePageState(this.objectsFromApiRepository);
 }
 
 class _HomePageState extends ViewState<HomePage, HomeController>
@@ -25,7 +29,8 @@ class _HomePageState extends ViewState<HomePage, HomeController>
   @override
   String get screenName => ScreenName.MAP_NAME;
 
-  _HomePageState() : super(HomeController(DataObjectsFromApiRepository())) {
+  _HomePageState(ObjectsFromApiRepository objectsFromApiRepository)
+      : super(HomeController(objectsFromApiRepository)) {
     controller.didSetLocation(Location(_initialCameraPosition.target.latitude,
         _initialCameraPosition.target.longitude));
     controller.getAllObjects();

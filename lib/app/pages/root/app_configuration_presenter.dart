@@ -7,11 +7,14 @@ class AppConfigurationPresenter extends Presenter {
   Function getAppConfigurationOnError;
 
   final GetAppConfigurationUseCase getAppConfigurationUseCase;
-  AppConfigurationPresenter(appConfigurationRepo) : getAppConfigurationUseCase = GetAppConfigurationUseCase(appConfigurationRepo);
+  AppConfigurationPresenter(appConfigurationRepo)
+      : getAppConfigurationUseCase =
+            GetAppConfigurationUseCase(appConfigurationRepo);
 
-  void getAppConfiguration(String countryCode) {
+  void getAppConfiguration() {
     getAppConfigurationUseCase.execute(
-        _GetAppConfigurationUseCaseObserver(this), GetAppConfigurationUseCaseParams(1));
+        _GetAppConfigurationUseCaseObserver(this),
+        GetAppConfigurationUseCaseParams(1));
   }
 
   @override
@@ -20,7 +23,8 @@ class AppConfigurationPresenter extends Presenter {
   }
 }
 
-class _GetAppConfigurationUseCaseObserver extends Observer<GetAppConfigurationUseCaseResponse> {
+class _GetAppConfigurationUseCaseObserver
+    extends Observer<GetAppConfigurationUseCaseResponse> {
   final AppConfigurationPresenter presenter;
   _GetAppConfigurationUseCaseObserver(this.presenter);
 
