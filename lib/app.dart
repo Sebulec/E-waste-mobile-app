@@ -1,3 +1,4 @@
+import 'package:e_waste/domain/repositories/info_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,7 +14,8 @@ class App extends MaterialApp {
   App(
       AnalyticsService analyticsService,
       AppConfigurationRepository appConfigurationRepository,
-      ObjectsFromApiRepository objectsFromApiRepository)
+      ObjectsFromApiRepository objectsFromApiRepository,
+      InfoRepository infoRepository)
       : super(
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
@@ -48,6 +50,7 @@ class App extends MaterialApp {
               analyticsService: analyticsService,
               appConfigurationRepository: appConfigurationRepository,
               objectsFromApiRepository: objectsFromApiRepository,
+              infoRepository: infoRepository
             )) {
     FlutterCleanArchitecture.debugModeOn();
   }
