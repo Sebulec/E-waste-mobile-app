@@ -1,3 +1,4 @@
+import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/entities/app_configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -9,6 +10,7 @@ import 'app_configuration_presenter.dart';
 class AppConfigurationController extends Controller {
   final AppConfigurationPresenter appConfigurationPresenter;
   AppConfiguration _appConfiguration;
+  BuildContext context;
 
   AppConfigurationController(appConfigurationRepo)
       : appConfigurationPresenter =
@@ -31,8 +33,9 @@ class AppConfigurationController extends Controller {
     // On error, show a snackbar, remove the user, and refresh the UI
     appConfigurationPresenter.getAppConfigurationOnError = (e) {
       print('Could not retrieve app configuration.');
-      ScaffoldState state = getState();
-      state.showSnackBar(SnackBar(content: Text(e.message)));
+      ScaffoldState state = Scaffold.of(context);
+      state.showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context).translate(e.toString()))));
       _appConfiguration = null;
       refreshUI(); // Refreshes the UI manually
     };

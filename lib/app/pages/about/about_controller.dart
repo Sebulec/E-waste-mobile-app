@@ -1,3 +1,4 @@
+import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/entities/info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -8,6 +9,7 @@ class AboutController extends Controller {
   final AboutPresenter aboutPresenter;
   Info _info;
   String _currentCountryCode;
+  BuildContext context;
 
   // Presenter should always be initialized this way
   AboutController(infoRepo)
@@ -27,8 +29,9 @@ class AboutController extends Controller {
     // On error, show a snackbar, remove the user, and refresh the UI
     aboutPresenter.getInfoOnError = (e) {
       print('Could not retrieve all objects.');
-      ScaffoldState state = getState();
-      state.showSnackBar(SnackBar(content: Text(e.message)));
+      ScaffoldState state = Scaffold.of(context);
+      state.showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context).translate(e.toString()))));
       _info = null;
       refreshUI(); // Refreshes the UI manually
     };

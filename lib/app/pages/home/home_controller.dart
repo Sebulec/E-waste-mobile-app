@@ -1,3 +1,4 @@
+import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/entities/all_objects.dart';
 import 'package:e_waste/domain/entities/location.dart';
 import 'package:e_waste/domain/entities/object_from_api.dart';
@@ -42,8 +43,9 @@ class HomeController extends Controller
     // On error, show a snackbar, remove the user, and refresh the UI
     homePresenter.getAllObjectsOnError = (e) {
       print('Could not retrieve all objects.');
-      ScaffoldState state = getState();
-      state.showSnackBar(SnackBar(content: Text(e.message)));
+      ScaffoldState state = Scaffold.of(context);
+      state.showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context).translate(e.toString()))));
       _allObjects = null;
       refreshUI(); // Refreshes the UI manually
     };

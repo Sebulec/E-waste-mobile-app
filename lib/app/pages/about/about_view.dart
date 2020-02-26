@@ -36,8 +36,10 @@ class _AboutState extends ViewState<AboutPage, AboutController>
 
   @override
   Widget buildPage() {
+    controller.context = context;
     configureCountryCode();
     return new Center(
+      key: globalKey,
       child: _isLoading ? CircularProgressIndicator() : _buildHtmlView(),
     );
   }

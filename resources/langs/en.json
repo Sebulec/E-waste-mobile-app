@@ -9,5 +9,7 @@
     "largeElectronics": "Large electronics",
     "batteries": "Batteries",
     "must_update": "Must update",
-    "update_required": "You have an old version of the app, please update"
+    "update_required": "You have an old version of the app, please update",
+    "server_error": "Error on the server side, please try again later.",
+    "no_internet_connection": "No internet connection"
 }

@@ -14,7 +14,7 @@ class ApiBaseHelper implements ApiBase {
       final response = await http.get(_baseUrl + url);
       responseJson = _returnResponse(response);
     } catch (e) {
-      throw FetchDataException('No Internet connection');
+      throw FetchDataException();
     }
     return responseJson;
   }
@@ -26,14 +26,13 @@ class ApiBaseHelper implements ApiBase {
         print(responseJson);
         return responseJson;
       case 400:
-        throw BadRequestException(response.body.toString());
+        throw BadRequestException();
       case 401:
       case 403:
-        throw UnauthorisedException(response.body.toString());
+        throw UnauthorisedException();
       case 500:
       default:
-        throw FetchDataException(
-            'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
+        throw FetchDataException();
     }
   }
 }

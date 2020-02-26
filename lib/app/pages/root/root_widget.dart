@@ -43,6 +43,8 @@ class _RootState extends State<Root> {
   final AppConfigurationController _appConfigurationController;
   final ObjectsFromApiRepository _objectsFromApiRepository;
   final InfoRepository _infoRepository;
+  final GlobalKey<State<StatefulWidget>> globalKey =
+      GlobalKey<State<StatefulWidget>>();
 
   _RootState(this._analyticsService, this._appConfigurationController,
       this._objectsFromApiRepository, this._infoRepository) {
@@ -58,10 +60,12 @@ class _RootState extends State<Root> {
 
   @override
   Widget build(BuildContext context) {
+    _appConfigurationController.context = context;
     return _appScaffold();
   }
 
   Widget _appScaffold() => Scaffold(
+        key: globalKey,
         appBar: AppBar(
           title: Text(
             AppLocalizations.of(context).translate("ewaste_name"),
