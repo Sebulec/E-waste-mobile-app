@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:e_waste/domain/entities/all_objects.dart';
 import 'package:e_waste/domain/entities/location.dart';
+import 'package:e_waste/domain/entities/waste_type.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -21,6 +22,7 @@ class GetAllObjectsUseCase
           .getAllObjectsForLocation(params.location);
       // Adding it triggers the .onNext() in the `Observer`
       // It is usually better to wrap the reponse inside a respose object.
+      _setWasteTypesForShops(allObjects);
       controller.add(GetAllObjectsUseCaseResponse(allObjects));
       logger.finest('GetAllObjectsUseCase successful.');
       controller.close();
@@ -30,6 +32,17 @@ class GetAllObjectsUseCase
       controller.addError(e);
     }
     return controller.stream;
+  }
+
+  void _setWasteTypesForShops(AllObjects allObjects) {
+    allObjects.shops.forEach((shop) {
+      shop.wasteTypes = [
+        WasteType(
+            "Energy efficient bubbles", WasteTypeEnum.energyEfficientBulbs),
+        WasteType("Small electronics", WasteTypeEnum.smallElectronics),
+        WasteType("Batteries", WasteTypeEnum.batteries)
+      ];
+    });
   }
 }
 
