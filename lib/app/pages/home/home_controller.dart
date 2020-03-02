@@ -40,9 +40,10 @@ class HomeController extends Controller
   @override
   // this is called automatically by the parent class
   void initListeners() {
-    currentLocationPeriodicStream.listen((location) {
-      if (oldCurrentLocation != location) {
-        oldCurrentLocation = location;
+    currentLocationPeriodicStream.listen((_) {
+      if (oldCurrentLocation != currentLocation) {
+        oldCurrentLocation = currentLocation;
+        getAllObjects();
         print("search location");
       }
     });

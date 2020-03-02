@@ -5,6 +5,7 @@ import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/entities/location.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -25,34 +26,37 @@ class HomePage extends View {
 class _HomePageState extends ViewState<HomePage, HomeController>
     with AnalyticsScreen {
   bool _shouldShowMap = false;
+  String _mapStyle;
 
   @override
   String get screenName => ScreenName.MAP_NAME;
 
   _HomePageState(ObjectsFromApiRepository objectsFromApiRepository)
       : super(HomeController(objectsFromApiRepository)) {
-    controller.didSetLocation(Location(_initialCameraPosition.target.latitude,
-        _initialCameraPosition.target.longitude));
-    controller.getAllObjects();
     checkLocationPermissionAndDisplayDialogIfPermitted();
     setCurrentScreen();
+    rootBundle.loadString(Resources.mapStyleLocation).then((string) {
+      _mapStyle = string;
+    });
   }
 
   void checkLocationPermissionAndDisplayDialogIfPermitted() async {
     bool isLocationEnabled = await location.Location().serviceEnabled();
     if (isLocationEnabled) {
-      _shouldShowMap = true;
-      setState(() {});
+      location.Location().getLocation().then((location) {
+        _initialCameraPosition = CameraPosition(
+          target: LatLng(location.latitude, location.longitude),
+          zoom: EWasteLayout.CAMERA_ZOOM,
+        );
+        _shouldShowMap = true;
+        setState(() {});
+      });
     }
   }
 
   Completer<GoogleMapController> _controller = Completer();
   GoogleMapController _googleMapController;
-
-  CameraPosition _initialCameraPosition = CameraPosition(
-    target: LatLng(52.228821, 21.007953),
-    zoom: EWasteLayout.CAMERA_ZOOM,
-  );
+  CameraPosition _initialCameraPosition;
 
   @override
   Widget buildPage() {
@@ -75,6 +79,7 @@ class _HomePageState extends ViewState<HomePage, HomeController>
   void _onMapCreated(GoogleMapController googleMapController) {
     _googleMapController = googleMapController;
     _controller.complete(googleMapController);
+    _googleMapController.setMapStyle(_mapStyle);
   }
 
   void _cameraDidStopped() async {

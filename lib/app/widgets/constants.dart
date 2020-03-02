@@ -15,3 +15,7 @@ class Font {
   static const GOTHAM = "GothamCondensed";
   static const SAN_FRANCISCO = "SanFrancisco";
 }
+
+class Resources {
+  static const String mapStyleLocation = "resources/mapStyle.txt";
+}
