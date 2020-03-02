@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/entities/all_objects.dart';
 import 'package:e_waste/domain/entities/location.dart';
@@ -17,12 +19,18 @@ class HomeController extends Controller
 
   AllObjects _allObjects;
   BuildContext context;
+  Location currentLocation;
+  Location oldCurrentLocation;
 
   List<Marker> get allObjects =>
       AllObjectsFromApiToMarkerWrapper(_allObjects, this)
           .getAllObjectsAsMarkers(context); // data used by the View
   final HomePresenter homePresenter;
-  Location currentLocation;
+
+  StreamController<Location> currentLocationStreamController =
+      StreamController.broadcast();
+  Stream<Location> currentLocationPeriodicStream =
+      Stream<Location>.periodic(Duration(seconds: 1));
 
   // Presenter should always be initialized this way
   HomeController(usersRepo)
@@ -32,6 +40,13 @@ class HomeController extends Controller
   @override
   // this is called automatically by the parent class
   void initListeners() {
+    currentLocationPeriodicStream.listen((location) {
+      if (oldCurrentLocation != location) {
+        oldCurrentLocation = location;
+        print("search location");
+      }
+    });
+
     homePresenter.getAllObjectsOnNext = (AllObjects allobjects) {
       _allObjects = allobjects;
       refreshUI(); // Refreshes the UI manually

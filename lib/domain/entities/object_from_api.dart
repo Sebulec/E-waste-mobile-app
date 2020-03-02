@@ -13,6 +13,7 @@ class ObjectFromApi {
   final double lat;
   final double long;
   ObjectType objectType;
+  @JsonKey(name: "waste_types")
   List<WasteType> wasteTypes;
 
   ObjectFromApi(

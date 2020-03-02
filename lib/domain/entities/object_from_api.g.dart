@@ -15,7 +15,7 @@ ObjectFromApi _$ObjectFromApiFromJson(Map<String, dynamic> json) {
     (json['long'] as num)?.toDouble(),
   )
     ..objectType = _$enumDecodeNullable(_$ObjectTypeEnumMap, json['objectType'])
-    ..wasteTypes = (json['wasteTypes'] as List)
+    ..wasteTypes = (json['waste_types'] as List)
         ?.map((e) =>
             e == null ? null : WasteType.fromJson(e as Map<String, dynamic>))
         ?.toList();
@@ -29,7 +29,7 @@ Map<String, dynamic> _$ObjectFromApiToJson(ObjectFromApi instance) =>
       'lat': instance.lat,
       'long': instance.long,
       'objectType': _$ObjectTypeEnumMap[instance.objectType],
-      'wasteTypes': instance.wasteTypes,
+      'waste_types': instance.wasteTypes,
     };
 
 T _$enumDecode<T>(

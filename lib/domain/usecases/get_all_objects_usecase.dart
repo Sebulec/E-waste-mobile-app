@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:e_waste/domain/entities/all_objects.dart';
 import 'package:e_waste/domain/entities/location.dart';
+import 'package:e_waste/domain/entities/object_type.dart';
 import 'package:e_waste/domain/entities/waste_type.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -23,6 +24,7 @@ class GetAllObjectsUseCase
       // Adding it triggers the .onNext() in the `Observer`
       // It is usually better to wrap the reponse inside a respose object.
       _setWasteTypesForShops(allObjects);
+      _setObjectTypes(allObjects);
       controller.add(GetAllObjectsUseCaseResponse(allObjects));
       logger.finest('GetAllObjectsUseCase successful.');
       controller.close();
@@ -43,6 +45,12 @@ class GetAllObjectsUseCase
         WasteType("Batteries", WasteTypeEnum.batteries)
       ];
     });
+  }
+
+  void _setObjectTypes(AllObjects allObjects) {
+    allObjects.custom
+        .forEach((object) => object.objectType = ObjectType.custom);
+    allObjects.shops.forEach((object) => object.objectType = ObjectType.shop);
   }
 }
 

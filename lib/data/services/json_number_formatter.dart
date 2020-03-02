@@ -4,6 +4,6 @@ class JsonNumberFormatter {
   JsonNumberFormatter(this._value);
 
   String getFormattedValue() {
-    return _value.toString().replaceAll(".", ",");
+    return _value.toString();
   }
 }
