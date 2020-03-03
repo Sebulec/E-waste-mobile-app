@@ -49,7 +49,7 @@ class DataObjectsFromApiRepository extends ObjectsFromApiRepository {
   factory DataObjectsFromApiRepository() => _instance;
 
   @override
-  Future<AllObjects> getAllObjectsForLocation(Location location) async {
+  Future<AllObjects> getAllObjectsForLocation(Location location, double range) async {
     return AllObjects(customObjects, shopObjects);
   }
 }

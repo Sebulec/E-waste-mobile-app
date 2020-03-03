@@ -12,19 +12,21 @@ class JsonObjectsFromApiRepository extends ObjectsFromApiRepository {
   JsonObjectsFromApiRepository(this._apiBase);
 
   @override
-  Future<AllObjects> getAllObjectsForLocation(Location location) async {
-    final response = await _apiBase.get(
-        _getAllObjects + _LocationWrapper(location).getLocationForRequest());
+  Future<AllObjects> getAllObjectsForLocation(
+      Location location, double range) async {
+    final response = await _apiBase.get(_getAllObjects +
+        _LocationWrapper(location, range).getLocationForRequest());
     return AllObjects.fromJson(response);
   }
 }
 
 class _LocationWrapper {
   final Location _location;
+  final double _range;
 
-  _LocationWrapper(this._location);
+  _LocationWrapper(this._location, this._range);
 
   String getLocationForRequest() {
-    return "?lat=${JsonNumberFormatter(_location.latitude).getFormattedValue()}&long=${JsonNumberFormatter(_location.longitude).getFormattedValue()}";
+    return "?lat=${JsonNumberFormatter(_location.latitude).getFormattedValue()}&long=${JsonNumberFormatter(_location.longitude).getFormattedValue()}&range=${JsonNumberFormatter(_range).getAsInteger()}";
   }
 }

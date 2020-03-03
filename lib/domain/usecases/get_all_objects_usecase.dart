@@ -20,7 +20,7 @@ class GetAllObjectsUseCase
     try {
       // get allObjects
       AllObjects allObjects = await _objectsFromApiRepository
-          .getAllObjectsForLocation(params.location);
+          .getAllObjectsForLocation(params.location, params.range);
       // Adding it triggers the .onNext() in the `Observer`
       // It is usually better to wrap the reponse inside a respose object.
       _setWasteTypesForShops(allObjects);
@@ -62,6 +62,7 @@ class GetAllObjectsUseCaseResponse {
 
 class GetAllObjectsUseCaseParams {
   final Location location;
+  final double range;
 
-  GetAllObjectsUseCaseParams(this.location);
+  GetAllObjectsUseCaseParams(this.location, this.range);
 }

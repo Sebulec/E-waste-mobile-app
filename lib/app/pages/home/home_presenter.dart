@@ -11,9 +11,9 @@ class HomePresenter extends Presenter {
   HomePresenter(objectsFromApiRepo)
       : getAllObjectsUseCase = GetAllObjectsUseCase(objectsFromApiRepo);
 
-  void getAllObjects(Location location) {
+  void getAllObjects(Location location, double range) {
     getAllObjectsUseCase.execute(_GetAllObjectsUseCaseObserver(this),
-        GetAllObjectsUseCaseParams(location));
+        GetAllObjectsUseCaseParams(location, range));
   }
 
   @override

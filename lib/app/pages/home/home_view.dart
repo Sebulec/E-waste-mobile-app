@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
+import 'package:e_waste/data/location/lat_lng_wrapper.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
-import 'package:e_waste/domain/entities/location.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,9 +18,7 @@ class HomePage extends View {
   HomePage(this.objectsFromApiRepository);
 
   @override
-  _HomePageState createState() =>
-      // inject dependencies inwards
-      _HomePageState(this.objectsFromApiRepository);
+  _HomePageState createState() => _HomePageState(this.objectsFromApiRepository);
 }
 
 class _HomePageState extends ViewState<HomePage, HomeController>
@@ -85,11 +83,9 @@ class _HomePageState extends ViewState<HomePage, HomeController>
   void _cameraDidStopped() async {
     LatLngBounds currentLocationBounds =
         await _googleMapController?.getVisibleRegion();
-
     if (currentLocationBounds.northeast != null) {
-      controller.didSetLocation(Location(
-          currentLocationBounds.northeast.latitude,
-          currentLocationBounds.northeast.longitude));
+      controller.didSetLocation(LatLngWrapper(currentLocationBounds.northeast),
+          LatLngWrapper(currentLocationBounds.southwest));
     }
   }
 }

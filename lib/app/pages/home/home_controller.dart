@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:e_waste/app_localizations.dart';
+import 'package:e_waste/data/location/distance_calculator.dart';
 import 'package:e_waste/domain/entities/all_objects.dart';
 import 'package:e_waste/domain/entities/location.dart';
 import 'package:e_waste/domain/entities/object_from_api.dart';
@@ -20,6 +21,7 @@ class HomeController extends Controller
   AllObjects _allObjects;
   BuildContext context;
   Location currentLocation;
+  double _range = 5000;
   Location oldCurrentLocation;
 
   List<Marker> get allObjects =>
@@ -67,10 +69,17 @@ class HomeController extends Controller
     };
   }
 
-  getAllObjects() => homePresenter.getAllObjects(currentLocation);
+  getAllObjects() => homePresenter.getAllObjects(currentLocation, _range);
 
-  void didSetLocation(Location location) {
-    currentLocation = location;
+  void didSetLocation(Location northeast, Location southwest) {
+    currentLocation = _getCenter(northeast, southwest);
+    _range = DistanceCalculator.calculateDistance(northeast, southwest) / 2;
+  }
+
+  Location _getCenter(Location northeast, Location southwest) {
+    double latitudeCenter = (northeast.latitude + southwest.latitude) / 2;
+    double longitudeCenter = (northeast.longitude + southwest.longitude) / 2;
+    return Location(latitudeCenter, longitudeCenter);
   }
 
   @override
