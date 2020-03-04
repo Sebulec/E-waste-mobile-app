@@ -63,7 +63,9 @@ class HomeController extends Controller
       print('Could not retrieve all objects.');
       ScaffoldState state = Scaffold.of(context);
       state.showSnackBar(SnackBar(
-          content: Text(AppLocalizations.of(context).translate(e.toString()))));
+              content:
+                  Text(AppLocalizations.of(context).translate(e.toString()))) ??
+          "error");
       _allObjects = null;
       refreshUI(); // Refreshes the UI manually
     };
