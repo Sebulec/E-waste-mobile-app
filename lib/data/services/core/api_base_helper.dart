@@ -6,7 +6,9 @@ import 'api_base.dart';
 import 'app_exception.dart';
 
 class ApiBaseHelper implements ApiBase {
-  final String _baseUrl = "http://localhost:1337/";
+  final String _baseUrl;
+
+  ApiBaseHelper(this._baseUrl);
 
   Future<dynamic> get(String url) async {
     var responseJson;

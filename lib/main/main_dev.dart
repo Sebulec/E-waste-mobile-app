@@ -11,7 +11,7 @@ import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/material.dart';
 import 'my_app.dart';
 
-final ApiBase _apiBase = ApiBaseHelper("https://e-waste.herokuapp.com/");
+final ApiBase _apiBase = ApiBaseHelper("http://localhost:1337/");
 final AppConfigurationRepository _appConfigurationRepository =
     JsonAppConfigurationRepository(_apiBase);
 final ObjectsFromApiRepository _objectsFromApiRepository =
