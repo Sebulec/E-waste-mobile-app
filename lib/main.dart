@@ -1,4 +1,3 @@
-import 'package:e_waste/app.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/data/services/core/api_base.dart';
 import 'package:e_waste/data/services/core/api_base_helper.dart';
@@ -10,21 +9,20 @@ import 'package:flutter/material.dart';
 import 'data/services/json_app_configuration_repostiory.dart';
 import 'data/services/json_objects_from_api_repository.dart';
 import 'domain/repositories/app_configuration_repository.dart';
+import 'my_app.dart';
 
-void main() => runApp(MyApp());
+final ApiBase _apiBase = ApiBaseHelper();
+final AppConfigurationRepository _appConfigurationRepository =
+    JsonAppConfigurationRepository(_apiBase);
+final ObjectsFromApiRepository _objectsFromApiRepository =
+    JsonObjectsFromApiRepository(_apiBase);
+final InfoRepository _infoRepository = JsonInfoRepository(_apiBase);
+final AnalyticsService _analyticsService = AnalyticsServiceImpl();
+final myApp = MyApp(
+  analyticsService: _analyticsService,
+  objectsFromApiRepository: _objectsFromApiRepository,
+  infoRepository: _infoRepository,
+  appConfigurationRepository: _appConfigurationRepository,
+);
 
-class MyApp extends StatelessWidget {
-  static final ApiBase _apiBase = ApiBaseHelper();
-  final AnalyticsService _analyticsService = AnalyticsServiceImpl();
-  final AppConfigurationRepository _appConfigurationRepository =
-      JsonAppConfigurationRepository(_apiBase);
-  final ObjectsFromApiRepository _objectsFromApiRepository =
-      JsonObjectsFromApiRepository(_apiBase);
-  final InfoRepository _infoRepository = JsonInfoRepository(_apiBase);
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return App(_analyticsService, _appConfigurationRepository,
-        _objectsFromApiRepository, _infoRepository);
-  }
-}
+void main() => runApp(myApp);
