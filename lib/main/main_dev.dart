@@ -1,4 +1,4 @@
-import 'package:e_waste/data/services/analytics_service_impl.dart';
+import 'package:e_waste/data/repositories/analytics_service_stub.dart';
 import 'package:e_waste/data/services/core/api_base.dart';
 import 'package:e_waste/data/services/core/api_base_helper.dart';
 import 'package:e_waste/data/services/json_app_configuration_repostiory.dart';
@@ -17,7 +17,7 @@ final AppConfigurationRepository _appConfigurationRepository =
 final ObjectsFromApiRepository _objectsFromApiRepository =
     JsonObjectsFromApiRepository(_apiBase);
 final InfoRepository _infoRepository = JsonInfoRepository(_apiBase);
-final AnalyticsService _analyticsService = AnalyticsServiceImpl();
+final AnalyticsService _analyticsService = AnalyticsServiceStub();
 final myApp = MyApp(
   analyticsService: _analyticsService,
   objectsFromApiRepository: _objectsFromApiRepository,
