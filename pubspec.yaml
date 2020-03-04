@@ -17,15 +17,15 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  flutter_clean_architecture: any
-  json_annotation: any
-  location: any
-  google_maps_flutter: any
-  easy_localization: any
-  flutter_html: any
-  url_launcher: any
-  package_info: any
-  launch_review: any
+  flutter_clean_architecture: ^3.0.2
+  json_annotation: ^3.0.1
+  location: ^2.5.3
+  google_maps_flutter: ^0.5.24+1
+  easy_localization: ^1.4.1
+  flutter_html: ^0.11.1
+  url_launcher: ^5.4.2
+  package_info: ^0.4.0+14
+  launch_review: ^2.0.0
   http: ^0.12.0+4
   
   #Firebase:
