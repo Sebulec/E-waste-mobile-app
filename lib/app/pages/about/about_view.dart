@@ -53,7 +53,7 @@ class _AboutState extends ViewState<AboutPage, AboutController>
       );
 
   void configureCountryCode() {
-    controller.setCountryCode(Localizations.localeOf(context).countryCode);
+    controller.setCountryCode(Localizations.localeOf(context).languageCode);
     if (_isLoading) {
       controller.getInfo();
       _isLoading = false;

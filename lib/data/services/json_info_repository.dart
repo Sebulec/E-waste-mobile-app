@@ -12,7 +12,7 @@ class JsonInfoRepository extends InfoRepository {
   @override
   Future<Info> getInfo(String countryCode) async {
     final Iterable response =
-        await _apiBase.get("${_getInfo}?language=${countryCode}");
+        await _apiBase.get("${_getInfo}?language=${countryCode.toUpperCase()}");
     return Info.fromJson(response.first);
   }
 }
