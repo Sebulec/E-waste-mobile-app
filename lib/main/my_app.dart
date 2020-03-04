@@ -1,10 +1,10 @@
+import 'package:e_waste/domain/repositories/analytics_service.dart';
+import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
+import 'package:e_waste/domain/repositories/info_repository.dart';
+import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/widgets.dart';
 
 import 'app.dart';
-import 'domain/repositories/analytics_service.dart';
-import 'domain/repositories/app_configuration_repository.dart';
-import 'domain/repositories/info_repository.dart';
-import 'domain/repositories/objects_from_api_repository.dart';
 
 class MyApp extends StatelessWidget {
   final AnalyticsService analyticsService;

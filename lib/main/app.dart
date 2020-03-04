@@ -1,14 +1,13 @@
+import 'package:e_waste/app/pages/root/root_widget.dart';
+import 'package:e_waste/app/widgets/constants.dart';
+import 'package:e_waste/app_localizations.dart';
+import 'package:e_waste/domain/repositories/analytics_service.dart';
+import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:e_waste/domain/repositories/info_repository.dart';
+import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'app/pages/root/root_widget.dart';
-import 'app/widgets/constants.dart';
-import 'app_localizations.dart';
-import 'domain/repositories/analytics_service.dart';
-import 'domain/repositories/app_configuration_repository.dart';
-import 'domain/repositories/objects_from_api_repository.dart';
 
 class App extends MaterialApp {
   App(
