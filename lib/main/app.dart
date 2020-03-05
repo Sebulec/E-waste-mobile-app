@@ -43,14 +43,14 @@ class App extends MaterialApp {
             },
             navigatorObservers: [analyticsService.getAnalyticsObserver()],
             theme: ThemeData(
-                primarySwatch: Colors.blue,
+                accentColor: Colors.greenAccent,
+                primarySwatch: Colors.green,
                 fontFamily: EWasteLayout.REGULAR_FONT),
             home: Root(
-              analyticsService: analyticsService,
-              appConfigurationRepository: appConfigurationRepository,
-              objectsFromApiRepository: objectsFromApiRepository,
-              infoRepository: infoRepository
-            )) {
+                analyticsService: analyticsService,
+                appConfigurationRepository: appConfigurationRepository,
+                objectsFromApiRepository: objectsFromApiRepository,
+                infoRepository: infoRepository)) {
     FlutterCleanArchitecture.debugModeOn();
   }
 }
