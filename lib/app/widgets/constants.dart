@@ -2,6 +2,7 @@ class EWasteLayout {
   static const double CAMERA_ZOOM = 15;
   static const double PADDING = 16.0;
   static const double AVATAR_RADIUS = 66.0;
+  static const double LIST_VIEW_PADDING = 8.0;
   static const HEADER_FONT = Font.GOTHAM;
   static const REGULAR_FONT = Font.SAN_FRANCISCO;
 }

@@ -11,5 +11,6 @@
     "must_update": "Konieczna aktualizacja",
     "update_required": "Posiadasz starszą wersję aplikacji, zaktualizuj do najnowszej",
     "server_error": "Wystąpił błąd po stronie serwera. Spróbuj później.",
-    "no_internet_connection": "Brak połączenia z internetem."
+    "no_internet_connection": "Brak połączenia z internetem.",
+    "newsfeed": "Newsfeed"
 }

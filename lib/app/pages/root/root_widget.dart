@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:e_waste/app/pages/about/about_view.dart';
 import 'package:e_waste/app/pages/home/home_view.dart';
+import 'package:e_waste/app/pages/news/news_view.dart';
 import 'package:e_waste/app/pages/root/outside_actions_manager.dart';
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/custom_dialog.dart';
@@ -9,6 +10,7 @@ import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/repositories/analytics_service.dart';
 import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:e_waste/domain/repositories/info_repository.dart';
+import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -19,13 +21,15 @@ class Root extends StatefulWidget {
   final AppConfigurationRepository appConfigurationRepository;
   final ObjectsFromApiRepository objectsFromApiRepository;
   final InfoRepository infoRepository;
+  final NewsRepository newsRepository;
 
   const Root(
       {Key key,
       this.analyticsService,
       this.appConfigurationRepository,
       this.objectsFromApiRepository,
-      this.infoRepository})
+      this.infoRepository,
+      this.newsRepository})
       : super(key: key);
 
   @override
@@ -34,7 +38,8 @@ class Root extends StatefulWidget {
         analyticsService,
         AppConfigurationController(appConfigurationRepository),
         objectsFromApiRepository,
-        infoRepository);
+        infoRepository,
+        newsRepository);
   }
 }
 
@@ -43,13 +48,19 @@ class _RootState extends State<Root> {
   final AppConfigurationController _appConfigurationController;
   final ObjectsFromApiRepository _objectsFromApiRepository;
   final InfoRepository _infoRepository;
+  final NewsRepository _newsRepository;
   final GlobalKey<State<StatefulWidget>> globalKey =
       GlobalKey<State<StatefulWidget>>();
 
-  _RootState(this._analyticsService, this._appConfigurationController,
-      this._objectsFromApiRepository, this._infoRepository) {
+  _RootState(
+      this._analyticsService,
+      this._appConfigurationController,
+      this._objectsFromApiRepository,
+      this._infoRepository,
+      this._newsRepository) {
     _children = [
       HomePage(_objectsFromApiRepository),
+      NewsPage(_newsRepository),
       AboutPage(_analyticsService, _infoRepository)
     ];
     _appConfigurationController.showUpgradeDialog = _showUpgradeDialog;
@@ -82,9 +93,13 @@ class _RootState extends State<Root> {
               title: new Text(AppLocalizations.of(context).translate("map")),
             ),
             BottomNavigationBarItem(
+                icon: new Icon(Icons.speaker_notes),
+                title: new Text(
+                    AppLocalizations.of(context).translate("newsfeed"))),
+            BottomNavigationBarItem(
               icon: new Icon(Icons.info),
               title: new Text(AppLocalizations.of(context).translate("info")),
-            )
+            ),
           ],
         ),
       );

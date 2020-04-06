@@ -5,6 +5,7 @@ import 'package:firebase_analytics/observer.dart';
 class ScreenName {
   static const MAP_NAME = "Map";
   static const INFO_NAME = "Info";
+  static const NEWS_NAME = "News";
 }
 
 class _CustomEventName {
