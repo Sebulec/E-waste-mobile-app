@@ -1,5 +1,6 @@
 import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
+import 'package:e_waste/app/widgets/ui_factory/ui_factory.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,6 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
     }
   }
 
-  _buildLoader() => Container(
-      child: Center(child: CircularProgressIndicator()), color: Colors.white);
+  _buildLoader() =>
+      Center(child: UIFactory.createLoader(LoaderType.simpleLoader).render());
 }

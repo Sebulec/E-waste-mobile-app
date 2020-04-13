@@ -54,6 +54,7 @@ class HomeController extends Controller
       _allObjects = allobjects;
       refreshUI(); // Refreshes the UI manually
     };
+    
     homePresenter.getAllObjectsOnComplete = () {
       print('All objects retrieved');
     };

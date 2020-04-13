@@ -24,7 +24,7 @@ class NewsController extends Controller {
 
   @override
   void initListeners() {
-    // TODO: implement initListeners
+    // newsPresenter.
   }
 
   _getNews() {

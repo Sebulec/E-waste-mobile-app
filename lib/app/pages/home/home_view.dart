@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
+import 'package:e_waste/app/widgets/ui_factory/ui_factory.dart';
 import 'package:e_waste/data/location/lat_lng_wrapper.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
@@ -71,8 +72,7 @@ class _HomePageState extends ViewState<HomePage, HomeController>
       onCameraIdle: () => _cameraDidStopped(),
       myLocationEnabled: true);
 
-  _showLoader() => Container(
-      child: Center(child: CircularProgressIndicator()), color: Colors.white);
+  _showLoader() => UIFactory.createLoader(LoaderType.simpleLoader);
 
   void _onMapCreated(GoogleMapController googleMapController) {
     _googleMapController = googleMapController;
