@@ -19,4 +19,6 @@ class Item {
   String name;
   Icon icon;
   Color activeColor;
+
+  Item(this.name, this.icon, {this.activeColor = Color.wh})
 }

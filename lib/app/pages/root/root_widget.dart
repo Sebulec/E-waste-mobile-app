@@ -6,6 +6,8 @@ import 'package:e_waste/app/pages/news/news_view.dart';
 import 'package:e_waste/app/pages/root/outside_actions_manager.dart';
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/custom_dialog.dart';
+import 'package:e_waste/app/widgets/ui_factory/interfaces/bottom_tab_bar.dart';
+import 'package:e_waste/app/widgets/ui_factory/ui_factory.dart';
 import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/repositories/analytics_service.dart';
 import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
@@ -76,32 +78,37 @@ class _RootState extends State<Root> {
   }
 
   Widget _appScaffold() => Scaffold(
-        key: globalKey,
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context).translate("ewaste_name"),
-            style: TextStyle(fontFamily: EWasteLayout.HEADER_FONT),
-          ),
+      key: globalKey,
+      appBar: AppBar(
+        title: Text(
+          AppLocalizations.of(context).translate("ewaste_name"),
+          style: TextStyle(fontFamily: EWasteLayout.HEADER_FONT),
         ),
-        body: _children[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: _onTabTapped,
-          currentIndex: _currentIndex,
-          items: [
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.map),
-              title: new Text(AppLocalizations.of(context).translate("map")),
-            ),
-            BottomNavigationBarItem(
-                icon: new Icon(Icons.speaker_notes),
-                title: new Text(
-                    AppLocalizations.of(context).translate("newsfeed"))),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.info),
-              title: new Text(AppLocalizations.of(context).translate("info")),
-            ),
-          ],
-        ),
+      ),
+      body: _children[_currentIndex],
+      bottomNavigationBar:
+          UIFactory.createBottomTabBar(_currentIndex, [
+            Item(AppLocalizations.of(context).translate("map"))
+          ], _onTabTapped)
+
+      // BottomNavigationBar(
+      //   onTap: _onTabTapped,
+      //   currentIndex: _currentIndex,
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: new Icon(Icons.map),
+      //       title: new Text(AppLocalizations.of(context).translate("map")),
+      //     ),
+      //     BottomNavigationBarItem(
+      //         icon: new Icon(Icons.speaker_notes),
+      //         title: new Text(
+      //             AppLocalizations.of(context).translate("newsfeed"))),
+      //     BottomNavigationBarItem(
+      //       icon: new Icon(Icons.info),
+      //       title: new Text(AppLocalizations.of(context).translate("info")),
+      //     ),
+      //   ],
+      // ),
       );
 
   void _onTabTapped(int index) {
