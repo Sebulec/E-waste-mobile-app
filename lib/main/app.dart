@@ -43,8 +43,8 @@ class App extends MaterialApp {
             },
             navigatorObservers: [analyticsService.getAnalyticsObserver()],
             theme: ThemeData(
-                accentColor: Colors.greenAccent,
-                primarySwatch: Colors.green,
+                accentColor: EWasteLayout.ACCENT_COLOR,
+                primarySwatch: EWasteLayout.PRIMARY_COLOR,
                 fontFamily: EWasteLayout.REGULAR_FONT),
             home: Root(
                 analyticsService: analyticsService,

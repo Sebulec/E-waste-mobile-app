@@ -28,6 +28,7 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
   _NewsPageState(NewsRepository newsRepository)
       : super(NewsController(newsRepository)) {
     setCurrentScreen();
+    controller.getNews();
   }
 
   @override

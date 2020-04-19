@@ -1,4 +1,6 @@
+import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/ui_factory/interfaces/renderable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 typedef OnItemChangeCallback(int selectedIndex);
@@ -20,5 +22,5 @@ class Item {
   Icon icon;
   Color activeColor;
 
-  Item(this.name, this.icon, {this.activeColor = Color.wh})
+  Item(this.name, this.icon, {this.activeColor = EWasteLayout.PRIMARY_COLOR});
 }

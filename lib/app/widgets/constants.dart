@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class EWasteLayout {
   static const double CAMERA_ZOOM = 15;
   static const double PADDING = 16.0;
@@ -5,6 +7,8 @@ class EWasteLayout {
   static const double LIST_VIEW_PADDING = 8.0;
   static const HEADER_FONT = Font.GOTHAM;
   static const REGULAR_FONT = Font.SAN_FRANCISCO;
+  static const ACCENT_COLOR = Colors.greenAccent;
+  static const PRIMARY_COLOR = Colors.green;
 }
 
 class EWasteImage {
@@ -20,3 +24,4 @@ class Font {
 class Resources {
   static const String mapStyleLocation = "resources/mapStyle.txt";
 }
+

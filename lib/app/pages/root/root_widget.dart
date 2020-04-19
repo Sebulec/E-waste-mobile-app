@@ -86,30 +86,19 @@ class _RootState extends State<Root> {
         ),
       ),
       body: _children[_currentIndex],
-      bottomNavigationBar:
-          UIFactory.createBottomTabBar(_currentIndex, [
-            Item(AppLocalizations.of(context).translate("map"))
-          ], _onTabTapped)
-
-      // BottomNavigationBar(
-      //   onTap: _onTabTapped,
-      //   currentIndex: _currentIndex,
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       icon: new Icon(Icons.map),
-      //       title: new Text(AppLocalizations.of(context).translate("map")),
-      //     ),
-      //     BottomNavigationBarItem(
-      //         icon: new Icon(Icons.speaker_notes),
-      //         title: new Text(
-      //             AppLocalizations.of(context).translate("newsfeed"))),
-      //     BottomNavigationBarItem(
-      //       icon: new Icon(Icons.info),
-      //       title: new Text(AppLocalizations.of(context).translate("info")),
-      //     ),
-      //   ],
-      // ),
-      );
+      bottomNavigationBar: UIFactory.createBottomTabBar(
+          _currentIndex,
+          [
+            Item(AppLocalizations.of(context).translate("map"),
+                new Icon(Icons.map),
+                activeColor: Colors.redAccent),
+            Item(AppLocalizations.of(context).translate("newsfeed"),
+                new Icon(Icons.speaker_notes),
+                activeColor: Colors.blueAccent),
+            Item(AppLocalizations.of(context).translate("info"),
+                new Icon(Icons.info))
+          ],
+          _onTabTapped));
 
   void _onTabTapped(int index) {
     setState(() {

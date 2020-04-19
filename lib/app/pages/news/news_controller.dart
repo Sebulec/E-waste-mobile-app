@@ -16,7 +16,8 @@ class NewsController extends Controller {
   List<NewsModelView> get allNews =>
       _news.map((n) => NewsModelView.fromNews(n)).toList();
   final NewsPresenter newsPresenter;
-  StreamController<bool> loadNewsStreamController = StreamController.broadcast();
+  StreamController<bool> loadNewsStreamController =
+      StreamController.broadcast();
 
   NewsController(newsRepo)
       : newsPresenter = NewsPresenter(newsRepo),
@@ -24,10 +25,13 @@ class NewsController extends Controller {
 
   @override
   void initListeners() {
-    // newsPresenter.
+    newsPresenter.getNews(_currentPage);
+    newsPresenter.getNewsOnComplete = () {
+      _isFinishedLoadingAllNews = true;
+    };
   }
 
-  _getNews() {
+  getNews() {
     _currentPage += 1;
 
   }

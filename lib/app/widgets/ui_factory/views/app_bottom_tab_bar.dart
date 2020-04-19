@@ -1,4 +1,5 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:e_waste/app/widgets/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:e_waste/app/widgets/ui_factory/interfaces/bottom_tab_bar.dart';
@@ -15,8 +16,9 @@ class AppBottomTabBar extends BottomTabBar {
   Widget render() {
     return BottomNavyBar(
       selectedIndex: selectedIndex,
-      showElevation: true, // use this to remove appBar's elevation
+      showElevation: false, // use this to remove appBar's elevation
       onItemSelected: onItemSelected,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       items: _items,
     );
   }

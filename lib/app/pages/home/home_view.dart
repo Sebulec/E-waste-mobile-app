@@ -72,7 +72,8 @@ class _HomePageState extends ViewState<HomePage, HomeController>
       onCameraIdle: () => _cameraDidStopped(),
       myLocationEnabled: true);
 
-  _showLoader() => UIFactory.createLoader(LoaderType.simpleLoader);
+  _showLoader() =>
+      Center(child: UIFactory.createLoader(LoaderType.simpleLoader));
 
   void _onMapCreated(GoogleMapController googleMapController) {
     _googleMapController = googleMapController;
