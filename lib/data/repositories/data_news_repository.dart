@@ -2,8 +2,8 @@ import 'package:e_waste/domain/entities/news.dart';
 import 'package:e_waste/domain/repositories/news_repository.dart';
 
 class DataNewsRepository extends NewsRepository {
-  List<News> firstList;
-  List<News> secondList;
+  List<News> firstList = [];
+  List<News> secondList = [];
 
   DataNewsRepository() {
     for (int i = 0; i < 10; i++) {

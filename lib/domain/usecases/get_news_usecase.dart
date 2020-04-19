@@ -8,7 +8,9 @@ class GetNewsUseCase
     extends UseCase<GetNewsUseCaseResponse, GetNewsUseCaseParams> {
   final NewsRepository _newsRepository;
 
-  GetNewsUseCase(this._newsRepository);
+  GetNewsUseCase(this._newsRepository) {
+    assert(this._newsRepository != null);
+  }
 
   @override
   Future<Stream<GetNewsUseCaseResponse>> buildUseCaseStream(

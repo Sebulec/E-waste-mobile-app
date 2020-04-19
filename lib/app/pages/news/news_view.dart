@@ -1,6 +1,8 @@
+import 'package:e_waste/app/widgets/alert.dart';
 import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/ui_factory/ui_factory.dart';
+import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,14 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
   _NewsPageState(NewsRepository newsRepository)
       : super(NewsController(newsRepository)) {
     setCurrentScreen();
-    controller.getNews();
+    controller.loadNewsCompleted.listen((_) {
+      _shouldShowNews = true;
+    });
+    controller.errorNewsCompleted.listen((error) {
+      ScaffoldState state = Scaffold.of(context);
+      showSnackBar(
+          state, AppLocalizations.of(context).translate(error.toString()));
+    });
   }
 
   @override
@@ -37,12 +46,12 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
   }
 
   _buildListView() => ListView.builder(
-        itemCount: controller.news.length + 1,
+        itemCount: controller.news.length,
         padding: EdgeInsets.symmetric(vertical: EWasteLayout.LIST_VIEW_PADDING),
         itemBuilder: _itemBuild,
       );
 
-  _itemBuild(BuildContext context, int index) {
+  Widget _itemBuild(BuildContext context, int index) {
     if (index == controller.news.length) {
       return _buildLoader();
     } else {

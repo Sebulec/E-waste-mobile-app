@@ -1,5 +1,4 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:e_waste/app/widgets/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:e_waste/app/widgets/ui_factory/interfaces/bottom_tab_bar.dart';

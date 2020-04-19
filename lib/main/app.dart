@@ -4,6 +4,7 @@ import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/domain/repositories/analytics_service.dart';
 import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:e_waste/domain/repositories/info_repository.dart';
+import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -14,7 +15,8 @@ class App extends MaterialApp {
       AnalyticsService analyticsService,
       AppConfigurationRepository appConfigurationRepository,
       ObjectsFromApiRepository objectsFromApiRepository,
-      InfoRepository infoRepository)
+      InfoRepository infoRepository,
+      NewsRepository newsRepository)
       : super(
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
@@ -47,10 +49,12 @@ class App extends MaterialApp {
                 primarySwatch: EWasteLayout.PRIMARY_COLOR,
                 fontFamily: EWasteLayout.REGULAR_FONT),
             home: Root(
-                analyticsService: analyticsService,
-                appConfigurationRepository: appConfigurationRepository,
-                objectsFromApiRepository: objectsFromApiRepository,
-                infoRepository: infoRepository)) {
+              analyticsService: analyticsService,
+              appConfigurationRepository: appConfigurationRepository,
+              objectsFromApiRepository: objectsFromApiRepository,
+              infoRepository: infoRepository,
+              newsRepository: newsRepository,
+            )) {
     FlutterCleanArchitecture.debugModeOn();
   }
 }
