@@ -50,7 +50,7 @@ class _ObjectFromApiToInfoWindowWrapper {
   _ObjectFromApiToInfoWindowWrapper(this._objectFromApi, this.context);
 
   InfoWindow getInfoWindow(Function onTap) => InfoWindow(
-      title: _objectFromApi.name,
+      title: "${_objectFromApi.name}",
       snippet: ObjectFromApiDetailInfo(_objectFromApi, context).toString(),
       onTap: () => onTap);
 }
@@ -73,6 +73,6 @@ class ObjectFromApiDetailInfo {
     wasteTypeLocalized.forEach((localizedWasteType) {
       listOfAvailableWasteTypesMessage += "$localizedWasteType, ";
     });
-    return "$youHaveMessage${listOfAvailableWasteTypesMessage.substring(0, listOfAvailableWasteTypesMessage.length - 2)}.";
+    return "${_objectFromApi.address}\n$youHaveMessage${listOfAvailableWasteTypesMessage.substring(0, listOfAvailableWasteTypesMessage.length - 2)}.";
   }
 }

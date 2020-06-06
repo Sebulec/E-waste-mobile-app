@@ -21,7 +21,8 @@ class DataObjectsFromApiRepository extends ObjectsFromApiRepository {
           "https://static.pepper.pl/live_pl/threads/thread_large/default/233710_1.jpg",
           "",
           51.142071,
-          16.888347)
+          16.888347,
+          {"formatted_address": "Zlotnicka 9/10, 54-029 Wrocław"})
         ..objectType = ObjectType.custom
         ..wasteTypes = [
           WasteType(
@@ -36,7 +37,8 @@ class DataObjectsFromApiRepository extends ObjectsFromApiRepository {
           "https://flutter.dev/assets/flutter-lockup-c13da9c9303e26b8d5fc208d2a1fa20c1ef47eb021ecadf27046dea04c0cebf6.png",
           "",
           51.1459711,
-          16.8583618)
+          16.8583618,
+          {"formatted_address": "Zlotnicka 9/10, 54-029 Wrocław"})
         ..objectType = ObjectType.shop
         ..wasteTypes = [
           WasteType(
@@ -49,7 +51,8 @@ class DataObjectsFromApiRepository extends ObjectsFromApiRepository {
   factory DataObjectsFromApiRepository() => _instance;
 
   @override
-  Future<AllObjects> getAllObjectsForLocation(Location location, double range) async {
+  Future<AllObjects> getAllObjectsForLocation(
+      Location location, double range) async {
     return AllObjects(customObjects, shopObjects);
   }
 }

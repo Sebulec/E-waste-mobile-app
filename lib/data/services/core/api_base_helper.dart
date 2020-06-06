@@ -13,7 +13,9 @@ class ApiBaseHelper implements ApiBase {
   Future<dynamic> get(String url) async {
     var responseJson;
     try {
-      final response = await http.get(_baseUrl + url);
+      String targetUrl = _baseUrl + url;
+      print(targetUrl);
+      final response = await http.get(targetUrl);
       responseJson = _returnResponse(response);
     } catch (e) {
       throw FetchDataException();

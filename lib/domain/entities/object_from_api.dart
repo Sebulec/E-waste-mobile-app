@@ -12,12 +12,14 @@ class ObjectFromApi {
   final String googlePlaceId;
   final double lat;
   final double long;
+  final Map data;
+  String get address => data["vicinity"];
   ObjectType objectType;
   @JsonKey(name: "waste_types")
   List<WasteType> wasteTypes;
 
-  ObjectFromApi(
-      this.name, this.iconUrl, this.googlePlaceId, this.lat, this.long);
+  ObjectFromApi(this.name, this.iconUrl, this.googlePlaceId, this.lat,
+      this.long, this.data);
 
   factory ObjectFromApi.fromJson(Map<String, dynamic> json) =>
       _$ObjectFromApiFromJson(json);
