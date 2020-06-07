@@ -1,3 +1,4 @@
+import 'package:e_waste/app/pages/news/new_model_view.dart';
 import 'package:e_waste/app/widgets/alert.dart';
 import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 import 'news_controller.dart';
+import 'subpages/news_detail_view.dart';
 
 class NewsPage extends View {
   final NewsRepository newsRepository;
@@ -59,10 +61,20 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
         leading: CircleAvatar(radius: 30.0, backgroundColor: Colors.amber),
         title: Text(controller.news[index].headerTitle),
         subtitle: Text("Test"),
+        onTap: () {
+          _navigateToNewsDetailPage(context, controller.news[index]);
+        },
       );
     }
   }
 
   _buildLoader() =>
       Center(child: UIFactory.createLoader(LoaderType.simpleLoader).render());
+
+  _navigateToNewsDetailPage(BuildContext context, NewsModelView newsModelView) {
+    showDialog(
+      context: context,
+      builder: (_) => NewsDetailPage(null),
+    );
+  }
 }

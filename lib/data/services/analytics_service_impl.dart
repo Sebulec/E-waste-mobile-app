@@ -6,6 +6,7 @@ class ScreenName {
   static const MAP_NAME = "Map";
   static const INFO_NAME = "Info";
   static const NEWS_NAME = "News";
+  static const NEWS_DETAIL_NAME = "NewsDetail";
 }
 
 class _CustomEventName {

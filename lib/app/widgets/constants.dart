@@ -9,6 +9,7 @@ class EWasteLayout {
   static const REGULAR_FONT = Font.SAN_FRANCISCO;
   static const ACCENT_COLOR = Colors.greenAccent;
   static const PRIMARY_COLOR = Colors.green;
+  static const GREY_COLOR = Colors.grey;
 }
 
 class EWasteImage {
@@ -24,4 +25,3 @@ class Font {
 class Resources {
   static const String mapStyleLocation = "resources/mapStyle.txt";
 }
-
