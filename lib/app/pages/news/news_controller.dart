@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:e_waste/app/pages/news/new_model_view.dart';
+import 'package:e_waste/app/pages/news/news_model_view.dart';
 import 'package:e_waste/domain/entities/news.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';

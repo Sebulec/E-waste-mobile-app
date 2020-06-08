@@ -1,4 +1,3 @@
-import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/ui_factory/views/app_bottom_tab_bar.dart';
 import 'package:e_waste/app/widgets/ui_factory/views/custom_label.dart';
 import 'package:e_waste/app/widgets/ui_factory/views/material_activity_indicator.dart';
@@ -22,8 +21,8 @@ class UIFactory {
     return AppBottomTabBar(selectedIndex, items, callback);
   }
 
-  static Label createLabel(String text, Color color, Font font) {
-    return CustomLabel(text, color, font);
+  static Label createLabel(String text, Color color, String font, double fontSize) {
+    return CustomLabel(text, color, font, fontSize);
   }
 
   static IActivityIndicator _createSimpleLoader() {

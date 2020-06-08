@@ -1,10 +1,13 @@
 import 'dart:ui';
 
-import 'package:e_waste/app/pages/news/new_model_view.dart';
+import 'package:e_waste/app/pages/news/news_model_view.dart';
 import 'package:e_waste/app/widgets/analytics_screen.dart';
+import 'package:e_waste/app/widgets/constants.dart';
+import 'package:e_waste/app/widgets/ui_factory/ui_factory.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 import 'news_detail_controller.dart';
 
@@ -14,7 +17,7 @@ class NewsDetailPage extends View {
   NewsDetailPage(this._newsModelView);
 
   @override
-  _NewsDetailPageState createState() => _NewsDetailPageState();
+  _NewsDetailPageState createState() => _NewsDetailPageState(_newsModelView);
 }
 
 class _NewsDetailPageState
@@ -41,7 +44,8 @@ class _NewsDetailPageState
   @override
   String get screenName => ScreenName.NEWS_DETAIL_NAME;
 
-  _NewsDetailPageState() : super(NewsDetailController()) {
+  _NewsDetailPageState(NewsModelView newsModelView)
+      : super(NewsDetailController(newsModelView)) {
     setCurrentScreen();
   }
 
@@ -94,11 +98,8 @@ Nulla congue sollicitudin tempor. Maecenas porta orci et enim imperdiet condimen
                         child: Padding(
                             padding: EdgeInsets.all(16),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Image.asset("images/biedronka-logo.png"),
-                                Text(text)
-                              ],
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: _obtainWidgetsForNewsViewModel(),
                             ))),
                     decoration: ShapeDecoration(
                         color: Colors.white,
@@ -109,4 +110,14 @@ Nulla congue sollicitudin tempor. Maecenas porta orci et enim imperdiet condimen
               ),
             )));
   }
+
+  List<Widget> _obtainWidgetsForNewsViewModel() => [
+        UIFactory.createLabel(controller.currentNewsModelView.headerTitle,
+            Colors.amberAccent, EWasteLayout.HEADER_FONT, 28),
+        Image.network(
+            "https://ca.slack-edge.com/TDDKEQ07J-UDFDCV3V5-948cfb60d5f4-512"),
+        Html(
+            data: controller.currentNewsModelView?.htmlText ?? "",
+            padding: EdgeInsets.all(EWasteLayout.PADDING))
+      ];
 }

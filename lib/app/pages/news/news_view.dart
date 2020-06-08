@@ -1,4 +1,4 @@
-import 'package:e_waste/app/pages/news/new_model_view.dart';
+import 'package:e_waste/app/pages/news/news_model_view.dart';
 import 'package:e_waste/app/widgets/alert.dart';
 import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
@@ -74,7 +74,7 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
   _navigateToNewsDetailPage(BuildContext context, NewsModelView newsModelView) {
     showDialog(
       context: context,
-      builder: (_) => NewsDetailPage(null),
+      builder: (_) => NewsDetailPage(newsModelView),
     );
   }
 }
