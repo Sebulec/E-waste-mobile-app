@@ -8,6 +8,7 @@ import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:e_waste/domain/repositories/info_repository.dart';
 import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
+import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/material.dart';
 import 'my_app.dart';
 
@@ -18,12 +19,15 @@ final ObjectsFromApiRepository _objectsFromApiRepository =
 final InfoRepository _infoRepository = DataInfoRepository();
 final AnalyticsService _analyticsService = AnalyticsServiceStub();
 final NewsRepository _newsRepository = DataNewsRepository();
+final UrlOpener _urlOpener = UrlOpener(_analyticsService);
+
 final myApp = MyApp(
   analyticsService: _analyticsService,
   objectsFromApiRepository: _objectsFromApiRepository,
   infoRepository: _infoRepository,
   appConfigurationRepository: _appConfigurationRepository,
   newsRepository: _newsRepository,
+  urlOpener: _urlOpener,
 );
 
 void main() => runApp(myApp);

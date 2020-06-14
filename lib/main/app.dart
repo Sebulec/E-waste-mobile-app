@@ -6,6 +6,7 @@ import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:e_waste/domain/repositories/info_repository.dart';
 import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
+import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,7 +17,8 @@ class App extends MaterialApp {
       AppConfigurationRepository appConfigurationRepository,
       ObjectsFromApiRepository objectsFromApiRepository,
       InfoRepository infoRepository,
-      NewsRepository newsRepository)
+      NewsRepository newsRepository,
+      UrlOpener urlOpener)
       : super(
             localizationsDelegates: [
               GlobalMaterialLocalizations.delegate,
@@ -54,6 +56,7 @@ class App extends MaterialApp {
               objectsFromApiRepository: objectsFromApiRepository,
               infoRepository: infoRepository,
               newsRepository: newsRepository,
+              urlOpener: urlOpener,
             )) {
     FlutterCleanArchitecture.debugModeOn();
   }

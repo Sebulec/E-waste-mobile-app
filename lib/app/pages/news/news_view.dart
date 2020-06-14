@@ -6,6 +6,7 @@ import 'package:e_waste/app/widgets/ui_factory/ui_factory.dart';
 import 'package:e_waste/app_localizations.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
 import 'package:e_waste/domain/repositories/news_repository.dart';
+import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
@@ -15,8 +16,9 @@ import 'subpages/news_detail_view.dart';
 
 class NewsPage extends View {
   final NewsRepository newsRepository;
+  final UrlOpener urlOpener;
 
-  NewsPage(this.newsRepository);
+  NewsPage(this.newsRepository, this.urlOpener);
 
   @override
   _NewsPageState createState() => _NewsPageState(this.newsRepository);
@@ -74,7 +76,7 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
   _navigateToNewsDetailPage(BuildContext context, NewsModelView newsModelView) {
     showDialog(
       context: context,
-      builder: (_) => NewsDetailPage(newsModelView),
+      builder: (_) => NewsDetailPage(newsModelView, widget.urlOpener),
     );
   }
 }

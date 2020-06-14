@@ -3,6 +3,7 @@ import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:e_waste/domain/repositories/info_repository.dart';
 import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
+import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/widgets.dart';
 
 import 'app.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   final ObjectsFromApiRepository objectsFromApiRepository;
   final InfoRepository infoRepository;
   final NewsRepository newsRepository;
+  final UrlOpener urlOpener;
 
   const MyApp(
       {Key key,
@@ -20,12 +22,13 @@ class MyApp extends StatelessWidget {
       this.appConfigurationRepository,
       this.objectsFromApiRepository,
       this.infoRepository,
-      this.newsRepository})
+      this.newsRepository,
+      this.urlOpener})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return App(analyticsService, appConfigurationRepository,
-        objectsFromApiRepository, infoRepository, newsRepository);
+        objectsFromApiRepository, infoRepository, newsRepository, urlOpener);
   }
 }

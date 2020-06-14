@@ -1,7 +1,11 @@
+import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/ui_factory/views/app_bottom_tab_bar.dart';
 import 'package:e_waste/app/widgets/ui_factory/views/custom_label.dart';
 import 'package:e_waste/app/widgets/ui_factory/views/material_activity_indicator.dart';
+import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/rich_text_parser.dart';
 
 import 'interfaces/activity_indicator.dart';
 import 'interfaces/bottom_tab_bar.dart';
@@ -21,13 +25,23 @@ class UIFactory {
     return AppBottomTabBar(selectedIndex, items, callback);
   }
 
-  static Label createLabel(String text, Color color, String font, double fontSize) {
+  static Label createLabel(
+      String text, Color color, String font, double fontSize) {
     return CustomLabel(text, color, font, fontSize);
   }
 
   static IActivityIndicator _createSimpleLoader() {
     return MaterialActivityIndicator();
   }
+
+  static Html createHtmlText(String htmlText,
+          {double padding = EWasteLayout.PADDING, UrlOpener urlOpener}) =>
+      Html(
+          data: htmlText,
+          padding: EdgeInsets.all(padding),
+          onLinkTap: (url) {
+            urlOpener.openUrl(url);
+          });
 }
 
 enum LoaderType { simpleLoader }

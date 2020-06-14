@@ -14,6 +14,7 @@ import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:e_waste/domain/repositories/info_repository.dart';
 import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
+import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/material.dart';
 
 import 'app_configuration_controller.dart';
@@ -24,6 +25,7 @@ class Root extends StatefulWidget {
   final ObjectsFromApiRepository objectsFromApiRepository;
   final InfoRepository infoRepository;
   final NewsRepository newsRepository;
+  final UrlOpener urlOpener;
 
   const Root(
       {Key key,
@@ -31,7 +33,8 @@ class Root extends StatefulWidget {
       this.appConfigurationRepository,
       this.objectsFromApiRepository,
       this.infoRepository,
-      this.newsRepository})
+      this.newsRepository,
+      this.urlOpener})
       : super(key: key);
 
   @override
@@ -41,7 +44,8 @@ class Root extends StatefulWidget {
         AppConfigurationController(appConfigurationRepository),
         objectsFromApiRepository,
         infoRepository,
-        newsRepository);
+        newsRepository,
+        urlOpener);
   }
 }
 
@@ -51,6 +55,7 @@ class _RootState extends State<Root> {
   final ObjectsFromApiRepository _objectsFromApiRepository;
   final InfoRepository _infoRepository;
   final NewsRepository _newsRepository;
+  final UrlOpener _urlOpener;
   final GlobalKey<State<StatefulWidget>> globalKey =
       GlobalKey<State<StatefulWidget>>();
 
@@ -59,10 +64,11 @@ class _RootState extends State<Root> {
       this._appConfigurationController,
       this._objectsFromApiRepository,
       this._infoRepository,
-      this._newsRepository) {
+      this._newsRepository,
+      this._urlOpener) {
     _children = [
       HomePage(_objectsFromApiRepository),
-      NewsPage(_newsRepository),
+      NewsPage(_newsRepository, _urlOpener),
       AboutPage(_analyticsService, _infoRepository)
     ];
     _appConfigurationController.showUpgradeDialog = _showUpgradeDialog;

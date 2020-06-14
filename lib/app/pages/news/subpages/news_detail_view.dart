@@ -5,16 +5,17 @@ import 'package:e_waste/app/widgets/analytics_screen.dart';
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/ui_factory/ui_factory.dart';
 import 'package:e_waste/data/services/analytics_service_impl.dart';
+import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:flutter_html/flutter_html.dart';
 
 import 'news_detail_controller.dart';
 
 class NewsDetailPage extends View {
   final NewsModelView _newsModelView;
+  final UrlOpener _urlOpener;
 
-  NewsDetailPage(this._newsModelView);
+  NewsDetailPage(this._newsModelView, this._urlOpener);
 
   @override
   _NewsDetailPageState createState() => _NewsDetailPageState(_newsModelView);
@@ -116,8 +117,8 @@ Nulla congue sollicitudin tempor. Maecenas porta orci et enim imperdiet condimen
             Colors.amberAccent, EWasteLayout.HEADER_FONT, 28),
         Image.network(
             "https://ca.slack-edge.com/TDDKEQ07J-UDFDCV3V5-948cfb60d5f4-512"),
-        Html(
-            data: controller.currentNewsModelView?.htmlText ?? "",
-            padding: EdgeInsets.all(EWasteLayout.PADDING))
+        UIFactory.createHtmlText(
+            controller.currentNewsModelView?.htmlText ?? "",
+            urlOpener: widget._urlOpener)
       ];
 }
