@@ -10,9 +10,10 @@ class News {
   final String title;
   final String author;
   final String text;
+  final String imageUrl;
   final DateTime date;
 
-  News(this.id, this.title, this.author, this.text, this.date);
+  News(this.id, this.title, this.author, this.text, this.date, this.imageUrl);
   factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
   Map<String, dynamic> toJson() => _$NewsToJson(this);
 }

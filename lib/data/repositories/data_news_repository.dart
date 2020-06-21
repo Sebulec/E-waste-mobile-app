@@ -12,7 +12,8 @@ class DataNewsRepository extends NewsRepository {
           "title ${i}",
           "Author",
           """<h1> Heyo Poo</h1> <br> <h3> Heyo ${i} lala</h3> <a href="http://google.com">test</a>""",
-          DateTime.now());
+          DateTime.now(),
+          "https://gbatemp.net/attachments/b35b251f-7b80-4d10-b92a-536f78b9d425-jpeg.214201/");
       firstList.add(news);
     }
 
@@ -22,7 +23,8 @@ class DataNewsRepository extends NewsRepository {
           "title ${i}",
           "Author",
           """<h1> Heyo Poo</h1> <br> <h3> Heyo ${i} lala</h3> <a href="http://google.com">test</a>""",
-          DateTime.now());
+          DateTime.now(),
+          "https://gbatemp.net/attachments/b35b251f-7b80-4d10-b92a-536f78b9d425-jpeg.214201/");
       secondList.add(news);
     }
   }

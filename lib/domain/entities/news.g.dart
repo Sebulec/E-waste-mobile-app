@@ -13,6 +13,7 @@ News _$NewsFromJson(Map<String, dynamic> json) {
     json['author'] as String,
     json['text'] as String,
     const CustomDateTimeConverter().fromJson(json['date'] as String),
+    json['imageUrl'] as String,
   );
 }
 
@@ -21,5 +22,6 @@ Map<String, dynamic> _$NewsToJson(News instance) => <String, dynamic>{
       'title': instance.title,
       'author': instance.author,
       'text': instance.text,
+      'imageUrl': instance.imageUrl,
       'date': const CustomDateTimeConverter().toJson(instance.date),
     };

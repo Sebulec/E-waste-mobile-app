@@ -59,16 +59,21 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
     if (index == controller.news.length) {
       return _buildLoader();
     } else {
-      return ListTile(
-        leading: CircleAvatar(radius: 30.0, backgroundColor: Colors.amber),
-        title: Text(controller.news[index].headerTitle),
-        subtitle: Text("Test"),
-        onTap: () {
-          _navigateToNewsDetailPage(context, controller.news[index]);
-        },
-      );
+      return _buildListTile(controller.news[index]);
     }
   }
+
+  _buildListTile(NewsModelView news) => ListTile(
+        leading: CircleAvatar(
+          radius: 30.0,
+          backgroundImage: NetworkImage(news.imageUrl),
+        ),
+        title: UIFactory.createLabel(
+            news.headerTitle, EWasteLayout.ACCENT_COLOR, Font.GOTHAM, 16),
+        onTap: () {
+          _navigateToNewsDetailPage(context, news);
+        },
+      );
 
   _buildLoader() =>
       Center(child: UIFactory.createLoader(LoaderType.simpleLoader).render());

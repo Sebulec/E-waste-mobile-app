@@ -114,7 +114,8 @@ Nulla congue sollicitudin tempor. Maecenas porta orci et enim imperdiet condimen
 
   List<Widget> _obtainWidgetsForNewsViewModel() => [
         UIFactory.createLabel(controller.currentNewsModelView.headerTitle,
-            Colors.amberAccent, EWasteLayout.HEADER_FONT, 28),
+            Colors.amberAccent, EWasteLayout.HEADER_FONT, 28,
+            textAlign: TextAlign.center),
         Image.network(
             "https://ca.slack-edge.com/TDDKEQ07J-UDFDCV3V5-948cfb60d5f4-512"),
         UIFactory.createHtmlText(

@@ -26,8 +26,9 @@ class UIFactory {
   }
 
   static Label createLabel(
-      String text, Color color, String font, double fontSize) {
-    return CustomLabel(text, color, font, fontSize);
+      String text, Color color, String font, double fontSize,
+      {TextAlign textAlign = TextAlign.start}) {
+    return CustomLabel(text, color, font, fontSize, textAlign);
   }
 
   static IActivityIndicator _createSimpleLoader() {
