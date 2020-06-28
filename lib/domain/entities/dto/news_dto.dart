@@ -11,6 +11,7 @@ class NewsDto {
   final int id;
   final String header;
   final _NewsUser user;
+  @JsonKey(name: "body")
   final String text;
   final _Image image;
   @JsonKey(name: "created_at")

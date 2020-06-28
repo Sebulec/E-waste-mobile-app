@@ -5,7 +5,8 @@ import 'package:e_waste/app/widgets/ui_factory/views/material_activity_indicator
 import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/rich_text_parser.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'interfaces/activity_indicator.dart';
 import 'interfaces/bottom_tab_bar.dart';
@@ -43,6 +44,16 @@ class UIFactory {
           onLinkTap: (url) {
             urlOpener.openUrl(url);
           });
+
+  static MarkdownBody createMarkdownText(String markdownText) =>
+      MarkdownBody(data: markdownText);
+
+  static CachedNetworkImage createImageView(String imageUrl) =>
+      CachedNetworkImage(
+        imageUrl: imageUrl,
+        placeholder: (context, url) => createLoader(LoaderType.simpleLoader),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+      );
 }
 
 enum LoaderType { simpleLoader }

@@ -13,7 +13,7 @@ NewsDto _$NewsDtoFromJson(Map<String, dynamic> json) {
     json['user'] == null
         ? null
         : _NewsUser.fromJson(json['user'] as Map<String, dynamic>),
-    json['text'] as String,
+    json['body'] as String,
     const CustomDateTimeConverter().fromJson(json['created_at'] as String),
     json['image'] == null
         ? null
@@ -25,7 +25,7 @@ Map<String, dynamic> _$NewsDtoToJson(NewsDto instance) => <String, dynamic>{
       'id': instance.id,
       'header': instance.header,
       'user': instance.user,
-      'text': instance.text,
+      'body': instance.text,
       'image': instance.image,
       'created_at': const CustomDateTimeConverter().toJson(instance.date),
     };

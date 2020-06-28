@@ -73,6 +73,9 @@ PODS:
   - Flutter (1.0.0)
   - flutter_plugin_android_lifecycle (0.0.1):
     - Flutter
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - google_maps_flutter (0.0.1):
     - Flutter
     - GoogleMaps
@@ -120,6 +123,12 @@ PODS:
   - nanopb/encode (0.3.9011)
   - package_info (0.0.1):
     - Flutter
+  - path_provider (0.0.1):
+    - Flutter
+  - path_provider_linux (0.0.1):
+    - Flutter
+  - path_provider_macos (0.0.1):
+    - Flutter
   - PromisesObjC (1.2.8)
   - Protobuf (3.11.3)
   - shared_preferences (0.0.1):
@@ -128,6 +137,9 @@ PODS:
     - Flutter
   - shared_preferences_web (0.0.1):
     - Flutter
+  - sqflite (0.0.1):
+    - Flutter
+    - FMDB (~> 2.7.2)
   - url_launcher (0.0.1):
     - Flutter
   - url_launcher_macos (0.0.1):
@@ -147,9 +159,13 @@ DEPENDENCIES:
   - launch_review (from `.symlinks/plugins/launch_review/ios`)
   - location (from `.symlinks/plugins/location/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - path_provider_linux (from `.symlinks/plugins/path_provider_linux/ios`)
+  - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
   - shared_preferences_web (from `.symlinks/plugins/shared_preferences_web/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
   - url_launcher_macos (from `.symlinks/plugins/url_launcher_macos/ios`)
   - url_launcher_web (from `.symlinks/plugins/url_launcher_web/ios`)
@@ -167,6 +183,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FMDB
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -199,12 +216,20 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/location/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  path_provider_linux:
+    :path: ".symlinks/plugins/path_provider_linux/ios"
+  path_provider_macos:
+    :path: ".symlinks/plugins/path_provider_macos/ios"
   shared_preferences:
     :path: ".symlinks/plugins/shared_preferences/ios"
   shared_preferences_macos:
     :path: ".symlinks/plugins/shared_preferences_macos/ios"
   shared_preferences_web:
     :path: ".symlinks/plugins/shared_preferences_web/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
   url_launcher_macos:
@@ -231,6 +256,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: 9e23f9d603b1fb71ccbeb48d79bf0d4ba0272c84
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   flutter_plugin_android_lifecycle: 47de533a02850f070f5696a623995e93eddcdb9b
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google_maps_flutter: d0dd62f5a7d39bae61057eb9f52dd778d99c7c6c
   GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
   GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
@@ -241,11 +267,15 @@ SPEC CHECKSUMS:
   location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   package_info: 48b108e75b8802c2d5e126f208ef540561c98aef
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  path_provider_linux: 4d630dc393e1f20364f3e3b4a2ff41d9674a84e4
+  path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
   shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
   shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
   shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
+  sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
   url_launcher: a1c0cc845906122c4784c542523d8cacbded5626
   url_launcher_macos: fd7894421cd39320dce5f292fc99ea9270b2a313
   url_launcher_web: e5527357f037c87560776e36436bf2b0288b965c
