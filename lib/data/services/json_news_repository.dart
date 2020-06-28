@@ -15,7 +15,6 @@ class JsonNewsRepository extends NewsRepository {
   Future<List<News>> getNews(int startPage) async {
     final Iterable response = await _apiBase
         .get("${_getNews}?_start=${startPage}&_limit=${pageLimit}");
-    var test = response.map((e) => NewsDto.fromJson(e));
     return response
         .map((e) => NewsDto.fromJson(e).asNews(_apiBase.baseUrl))
         .toList();
