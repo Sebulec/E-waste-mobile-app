@@ -8,7 +8,7 @@ class DataNewsRepository extends NewsRepository {
   DataNewsRepository() {
     for (int i = 0; i < 10; i++) {
       News news = News(
-          "${i}",
+          i,
           "title ${i}",
           "Author",
           """<h1> Heyo Poo</h1> <br> <h3> Heyo ${i} lala</h3> <a href="http://google.com">test</a>""",
@@ -19,7 +19,7 @@ class DataNewsRepository extends NewsRepository {
 
     for (int i = 10; i < 20; i++) {
       News news = News(
-          "${i}",
+          i,
           "title ${i}",
           "Author",
           """<h1> Heyo Poo</h1> <br> <h3> Heyo ${i} lala</h3> <a href="http://google.com">test</a>""",

@@ -44,6 +44,7 @@ class NewsController extends Controller {
 
     // On error, show a snackbar, remove the user, and refresh the UI
     newsPresenter.getNewsOnError = (e) {
+      print(e);
       print('Could not retrieve all news.');
       _errorNewsStreamController.add(e);
       _news = null;

@@ -39,4 +39,7 @@ class ApiBaseHelper implements ApiBase {
         throw FetchDataException();
     }
   }
+
+  @override
+  String get baseUrl => _baseUrl;
 }
