@@ -64,9 +64,10 @@ class _NewsPageState extends ViewState<NewsPage, NewsController>
   }
 
   _buildListTile(NewsModelView news) => ListTile(
-        leading: CircleAvatar(
-          radius: 30.0,
+        leading: Container(
           child: UIFactory.createImageView(news.imageUrl),
+          width: 50,
+          height: 50,
         ),
         title: UIFactory.createLabel(
             news.headerTitle, EWasteLayout.ACCENT_COLOR, Font.GOTHAM, 16),
