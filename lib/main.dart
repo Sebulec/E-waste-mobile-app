@@ -12,7 +12,7 @@ import 'package:e_waste/domain/repositories/news_repository.dart';
 import 'package:e_waste/domain/repositories/objects_from_api_repository.dart';
 import 'package:e_waste/domain/repositories/url_opener.dart';
 import 'package:flutter/material.dart';
-import 'my_app.dart';
+import 'main/my_app.dart';
 
 final ApiBase _apiBase = ApiBaseHelper("https://e-waste.herokuapp.com/");
 final AppConfigurationRepository _appConfigurationRepository =
