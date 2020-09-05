@@ -3,12 +3,14 @@ import 'dart:ui';
 import 'package:e_waste/app/pages/about/about_view.dart';
 import 'package:e_waste/app/pages/home/home_view.dart';
 import 'package:e_waste/app/pages/news/news_view.dart';
+import 'package:e_waste/app/pages/root/app_coordinator.dart';
 import 'package:e_waste/app/pages/root/outside_actions_manager.dart';
 import 'package:e_waste/app/widgets/constants.dart';
 import 'package:e_waste/app/widgets/custom_dialog.dart';
 import 'package:e_waste/app/widgets/ui_factory/interfaces/bottom_tab_bar.dart';
 import 'package:e_waste/app/widgets/ui_factory/ui_factory.dart';
 import 'package:e_waste/app_localizations.dart';
+import 'package:e_waste/domain/entities/form_type.dart';
 import 'package:e_waste/domain/repositories/analytics_service.dart';
 import 'package:e_waste/domain/repositories/app_configuration_repository.dart';
 import 'package:e_waste/domain/repositories/info_repository.dart';
@@ -58,6 +60,7 @@ class _RootState extends State<Root> {
   final UrlOpener _urlOpener;
   final GlobalKey<State<StatefulWidget>> globalKey =
       GlobalKey<State<StatefulWidget>>();
+  AppCoordinator _appCoordinator;
 
   _RootState(
       this._analyticsService,
@@ -80,6 +83,7 @@ class _RootState extends State<Root> {
   @override
   Widget build(BuildContext context) {
     _appConfigurationController.context = context;
+    _appCoordinator = AppCoordinator(context);
     return _appScaffold();
   }
 
@@ -104,7 +108,8 @@ class _RootState extends State<Root> {
             Item(AppLocalizations.of(context).translate("info"),
                 new Icon(Icons.info))
           ],
-          _onTabTapped));
+          _onTabTapped),
+      drawer: _createDrawer());
 
   void _onTabTapped(int index) {
     setState(() {
@@ -134,6 +139,31 @@ class _RootState extends State<Root> {
 
   _navigateToStore() {
     OutsideActionsManager().navigateToStore();
+  }
+
+  _createDrawer() {
+    AppLocalizations localizations = AppLocalizations.of(context);
+
+    return Drawer(
+      // Add a ListView to the drawer. This ensures the user can scroll
+      // through the options in the drawer if there isn't enough vertical
+      // space to fit everything.
+      child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.only(top: 40),
+        children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.photo_filter),
+            title: UIFactory.createLabel(
+                localizations.translate("report_illegal_trash"),
+                EWasteLayout.ACCENT_COLOR,
+                EWasteLayout.REGULAR_FONT,
+                16),
+            onTap: () => _appCoordinator.navigateToReportForm(FormType.illegalDump),
+          ),
+        ],
+      ),
+    );
   }
 }
 

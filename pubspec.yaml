@@ -30,6 +30,7 @@ dependencies:
   bottom_navy_bar: ^5.4.0
   flutter_markdown: ^0.4.2
   cached_network_image: ^2.2.0+1
+  image_form_field: ^0.0.3
   
   #Firebase:
   firebase_core: ^0.4.0+9

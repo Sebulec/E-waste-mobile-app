@@ -7,6 +7,7 @@ class ScreenName {
   static const INFO_NAME = "Info";
   static const NEWS_NAME = "News";
   static const NEWS_DETAIL_NAME = "NewsDetail";
+  static const REPORT_ILLEGAL_DUMP_NAME = "Illegal tip form";
 }
 
 class _CustomEventName {
